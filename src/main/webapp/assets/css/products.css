@@ -424,7 +424,7 @@ body.products-page {
 
 .product-card:hover .product-image {
     box-shadow: 0 8px 32px rgba(201,169,98,0.18), 0 1.5px 6px rgba(10,25,47,0.09);
-    border: 1.5px solid var(--premium-accent, #c9a962);
+    border: 1.5px solid var(--premium-accent);
     transform: translateY(-6px) scale(1.034);
 }
 

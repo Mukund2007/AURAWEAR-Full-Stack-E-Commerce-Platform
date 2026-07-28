@@ -16,78 +16,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-        tailwind.config = {
-          
-          theme: {
-            extend: {
-              "colors": {
-                      "surface": "#f5f0e8",             /* Premium Cream */
-                      "background": "#faf8f3",          /* Subtle Off-White */
-                      "primary": "#0a192f",             /* Deep Navy */
-                      "secondary": "#1e3a5f",           /* Rich Navy Blue */
-                      "accent": "#c9a962",              /* Muted Gold */
-                      "accent-light": "#e8d5a3",        /* Light Gold */
-                      "on-surface": "#0a192f",          /* Primary Text */
-                      "on-background": "#0a192f",
-                      "on-primary": "#faf8f3",
-                      "on-secondary": "#faf8f3",
-                      "outline": "#e2d8c8",             /* Warm Border */
-                      "outline-variant": "#e2d8c8",
-                      "error": "#7b2d3d",               /* Deep Burgundy */
-                      "success": "#2d5a3d",             /* Refined Green */
-                      "surface-container-low": "#f5f0e8",
-                      "surface-container-high": "#e8ddd0",
-                      "surface-container-highest": "#d9cdc2"
-              },
-              "borderRadius": {
-                      "DEFAULT": "4px",
-                      "lg": "4px",
-                      "xl": "4px",
-                      "full": "999px"
-              },
-              "spacing": {
-                      "margin-desktop": "80px",
-                      "container-max": "1440px",
-                      "gutter": "24px",
-                      "stack-lg": "32px",
-                      "section-gap-mobile": "64px",
-                      "section-gap": "160px",
-                      "margin-mobile": "20px",
-                      "stack-sm": "8px",
-                      "stack-md": "16px"
-              },
-              "fontFamily": {
-                      "headline-md": ["DM Sans", "sans-serif"],
-                      "headline-sm": ["DM Sans", "sans-serif"],
-                      "display-lg-mobile": ["DM Sans", "sans-serif"],
-                      "label-md": ["DM Sans", "sans-serif"],
-                      "label-caps": ["DM Sans", "sans-serif"],
-                      "display-lg": ["DM Sans", "sans-serif"],
-                      "body-md": ["DM Sans", "sans-serif"],
-                      "body-lg": ["DM Sans", "sans-serif"],
-
-              },
-              "fontSize": {
-                      "headline-md": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "400"}],
-                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
-                      "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
-                      "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
-                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.08em", "fontWeight": "600"}],
-                      "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "500"}],
-                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
-              }
-            },
-          },
-        }
-    </script>
     <style>
         body {
-            background-color: theme('colors.background');
-            color: theme('colors.on-surface');
+            background-color: var(--bg-color);
+            color: var(--primary-text);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -137,11 +69,11 @@
 
     <main class="flex-grow">
         <!-- Hero Section -->
-        <section class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, #0a192f 0%, #1e3a5f 100%);">
+        <section class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, var(--primary-brand) 0%, var(--secondary-brand) 100%);">
             <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105 hero-bg-video opacity-40">
                 <source src="${ctx}/assets/images/hero-main.webm?v=1.0.0" type="video/webm">
             </video>
-            <div class="absolute inset-0 z-10" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.3) 0%, rgba(10, 25, 47, 0.5) 100%);"></div>
+            <div class="absolute inset-0 z-10" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);"></div>
             <div class="relative z-20 text-center px-margin-mobile flex flex-col items-center select-none">
                 <span class="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-6 text-accent">Premium Streetwear</span>
                 <h1 class="text-white font-light tracking-[-0.05em] mb-8 leading-[1.05] text-center" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 8vw, 88px); font-weight: 400;">
@@ -212,19 +144,19 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
                 <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Men">
                     <img alt="Men's Collection" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-men.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Men</span></div>
+                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Men</span></div>
                 </a>
                 <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Women">
                     <img alt="Women's Collection" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-women.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Women</span></div>
+                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Women</span></div>
                 </a>
                 <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Footwear">
                     <img alt="Footwear" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-footwear.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Footwear</span></div>
+                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Footwear</span></div>
                 </a>
                 <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Accessories">
                     <img alt="Accessories" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-accessories.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Accessories</span></div>
+                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Accessories</span></div>
                 </a>
             </div>
         </section>
