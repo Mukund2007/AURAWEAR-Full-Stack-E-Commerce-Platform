@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
@@ -12,8 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Wishlist - AuraWear</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
-    <link rel="stylesheet" href="${ctx}/assets/css/wishlist.css?v=4">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
+    <link class="wishlist-style" rel="stylesheet" href="${ctx}/assets/css/wishlist.css?v=200">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
     <style>
         .material-symbols-outlined {
@@ -67,7 +68,7 @@
                                         <c:when test="${not empty item.image}">
                                             <img src="<c:choose><c:when test="${fn:startsWith(item.image, 'http')}">${item.image}</c:when><c:otherwise>${ctx}/assets/images/${item.image}</c:otherwise></c:choose>"
                                                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                                                 alt="${item.productName}"
+                                                 alt="<c:out value="${item.productName}"/>"
                                                  loading="lazy">
                                             <div class="wl-img-fallback" style="display:none;">
                                                 <span class="material-symbols-outlined" style="font-size: 40px; color: var(--wl-outline); opacity: 0.4;">checkroom</span>
@@ -83,7 +84,7 @@
 
                                 <!-- Heart Remove Button -->
                                 <button class="wl-remove-btn"
-                                        onclick="removeItem(event, ${item.productId}, '${item.productName}')"
+                                        onclick="removeItem(event, ${item.productId}, '${fn:replace(fn:escapeXml(item.productName), "'", "\\'")}')"
                                         aria-label="Remove from wishlist"
                                         title="Remove from wishlist">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 400;">favorite</span>
@@ -91,14 +92,14 @@
 
                                 <!-- Product Info -->
                                 <div class="wl-info">
-                                    <h3 class="wl-name">${item.productName}</h3>
+                                    <h3 class="wl-name"><c:out value="${item.productName}"/></h3>
                                     <p class="wl-category">AuraWear</p>
                                     <p class="wl-price">₹<fmt:formatNumber value="${item.price}" maxFractionDigits="0"/></p>
                                 </div>
 
                                 <!-- Add to Bag Button -->
                                 <button class="wl-add-btn"
-                                        onclick="addToCart(event, ${item.productId}, '${item.size}', ${item.price})"
+                                        onclick="addToCart(event, ${item.productId}, '${fn:replace(fn:escapeXml(item.size), "'", "\\'")}', ${item.price})"
                                         id="addBtn-${item.productId}">
                                     + Add to Bag
                                 </button>

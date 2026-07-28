@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -26,9 +27,9 @@ gtag('config', 'G-EG16LNFXMK');
 </c:if>
 
 <!-- Global Resource Links -->
-<link rel="stylesheet" href="${ctx}/assets/css/design-tokens.css?v=101">
-<link rel="stylesheet" href="${ctx}/assets/css/navbar.css?v=125">
-<link rel="stylesheet" href="${ctx}/assets/css/login-modal.css?v=120">
+<link rel="stylesheet" href="${ctx}/assets/css/design-tokens.css?v=200">
+<link rel="stylesheet" href="${ctx}/assets/css/navbar.css?v=200">
+<link rel="stylesheet" href="${ctx}/assets/css/login-modal.css?v=200">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
@@ -36,6 +37,7 @@ gtag('config', 'G-EG16LNFXMK');
 
 <script>
 window._csrf = "${_csrf}";
+window.ctx = "${ctx}";
 
 function updateCartCount() {
     fetch("${ctx}/cart-count", { credentials: "include" })

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false"%>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core"%>
 <%@ taglib prefix="fn"  uri="jakarta.tags.functions"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
@@ -21,8 +22,8 @@
     </title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=120">
-    <link rel="stylesheet" href="${ctx}/assets/css/products.css?v=120">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
+    <link class="products-style" rel="stylesheet" href="${ctx}/assets/css/products.css?v=200">
 
 </head>
 <body class="products-page">

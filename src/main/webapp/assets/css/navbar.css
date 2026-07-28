@@ -25,12 +25,13 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
     z-index: 999;
     width: 100%;
     height: 80px;
-    background: rgba(247, 242, 236, 0.85) !important;
-    border-bottom: 1.5px solid rgba(0, 0, 0, 0.05) !important;
+    background: rgba(250, 248, 243, 0.92) !important;
+    border-bottom: 1px solid var(--border-color) !important;
     box-sizing: border-box;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     transition: background var(--transition-luxe), border-bottom var(--transition-luxe) !important;
+    box-shadow: var(--shadow-subtle);
 }
 
 
@@ -62,13 +63,13 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
 }
 
 .brand a {
-    font-family: var(--font-headline);
-    font-size: 24px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
     text-transform: none;
     text-decoration: none;
-    color: var(--text-color) !important;
+    color: var(--primary-text) !important;
     line-height: 1;
 }
 
@@ -84,14 +85,14 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
 
 .nav-links a {
     font-family: var(--font-body);
-    font-size: 16px;
-    font-weight: 500;
-    text-transform: none;
-    letter-spacing: -0.01em;
-    color: var(--text-muted) !important;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--secondary-text) !important;
     text-decoration: none;
-    padding: 6px 0;
-    padding-bottom: 4px;
+    padding: 8px 0;
+    padding-bottom: 6px;
     transition: color var(--transition-normal), border-color var(--transition-normal);
     border-bottom: 2px solid transparent;
     white-space: nowrap;
@@ -99,12 +100,12 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
 }
 
 .nav-links a:hover {
-    color: var(--text-color) !important;
+    color: var(--primary-text) !important;
 }
 
 .nav-links a.active {
-    color: var(--text-color) !important;
-    border-bottom: 2px solid var(--text-color) !important;
+    color: var(--primary-text) !important;
+    border-bottom: 2px solid var(--premium-accent) !important;
 }
 
 .navbar a, .navbar i, .navbar span {
@@ -300,13 +301,6 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
     border-color: var(--text-color) !important;
 }
 
-/* Footer overrides — aligned with Stitch light cream canvas */
-footer, .footer, .footer-section {
-    background: var(--bg-color) !important;
-    color: var(--text-color) !important;
-    border-top: 1px solid var(--border-color) !important;
-}
-
 /* Right-side nav icons overrides and smooth scaling */
 .nav-icons {
     display: flex;
@@ -389,14 +383,14 @@ footer, .footer, .footer-section {
 .navbar-center-menu {
     display: flex;
     align-items: center;
-    gap: 28px;
-    background: var(--card-bg);
-    border: 1.5px solid var(--border-color-solid);
-    padding: 6px 10px 6px 24px;
-    border-radius: 40px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    gap: 32px;
+    background: rgba(250, 248, 243, 0.8);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px 8px 28px;
+    border-radius: var(--radius-pill);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     transition: all var(--transition-slow);
 }
 
@@ -409,11 +403,11 @@ footer, .footer, .footer-section {
 }
 
 .acet-menu-title {
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text-color);
+    letter-spacing: 0.12em;
+    color: var(--primary-text);
     display: flex;
     align-items: center;
     gap: 6px;
@@ -421,7 +415,7 @@ footer, .footer, .footer-section {
 }
 
 .acet-menu-item:hover .acet-menu-title {
-    color: var(--accent-color);
+    color: var(--premium-accent);
 }
 
 /* Glassmorphic Dropdown Panel */
@@ -431,15 +425,15 @@ footer, .footer, .footer-section {
     left: 50%;
     transform: translateX(-50%) translateY(15px) scale(0.95);
     background: var(--bg-color);
-    border: 1.5px solid var(--border-color-solid);
-    box-shadow: 8px 8px 0px var(--border-color-solid);
-    padding: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-elevated);
+    padding: 28px;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     z-index: 1000;
     transition: opacity var(--transition-slow), transform var(--transition-slow), visibility var(--transition-slow);
-    border-radius: 0px;
+    border-radius: var(--radius-card);
 }
 
 /* Arrow indicator pointing up to item */
@@ -477,13 +471,13 @@ footer, .footer, .footer-section {
 /* Dropdown Content Typography */
 .dropdown-heading {
     font-size: 10px;
-    font-weight: 900;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--accent-color);
-    margin-bottom: 8px;
+    letter-spacing: 0.15em;
+    color: var(--premium-accent);
+    margin-bottom: 12px;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 4px;
+    padding-bottom: 8px;
 }
 
 .hovered-link {
@@ -498,7 +492,7 @@ footer, .footer, .footer-section {
 }
 
 .hovered-link:hover {
-    color: var(--accent-color) !important;
+    color: var(--premium-accent) !important;
     transform: translateX(4px);
 }
 

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- Cache bust: v200 --%>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
@@ -13,6 +14,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>AuraWear - High-End Minimalist Apparel</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -22,27 +24,28 @@
           theme: {
             extend: {
               "colors": {
-                      "surface": "#D9CDC2",             /* Warm Stone */
-                      "background": "#F7F2EC",          /* Warm Ivory */
-                      "primary": "#000000",             /* Deep Navy */
-                      "secondary": "#465F7D",           /* Muted Steel Blue */
-                      "accent": "#B89A63",              /* Champagne Gold */
-                      "on-surface": "#000000",          /* Primary Text */
-                      "on-background": "#000000",
-                      "on-primary": "#F7F2EC",
-                      "on-secondary": "#F7F2EC",
-                      "outline": "#D8D1CA",             /* Border Color */
-                      "outline-variant": "#D8D1CA",
-                      "error": "#8C3B3B",               /* Burgundy / Wishlist */
-                      "success": "#5B7358",             /* Success */
-                      "surface-container-low": "#D9CDC2",
-                      "surface-container-high": "#C7B9AC",
-                      "surface-container-highest": "#B5A799"
+                      "surface": "#f5f0e8",             /* Premium Cream */
+                      "background": "#faf8f3",          /* Subtle Off-White */
+                      "primary": "#0a192f",             /* Deep Navy */
+                      "secondary": "#1e3a5f",           /* Rich Navy Blue */
+                      "accent": "#c9a962",              /* Muted Gold */
+                      "accent-light": "#e8d5a3",        /* Light Gold */
+                      "on-surface": "#0a192f",          /* Primary Text */
+                      "on-background": "#0a192f",
+                      "on-primary": "#faf8f3",
+                      "on-secondary": "#faf8f3",
+                      "outline": "#e2d8c8",             /* Warm Border */
+                      "outline-variant": "#e2d8c8",
+                      "error": "#7b2d3d",               /* Deep Burgundy */
+                      "success": "#2d5a3d",             /* Refined Green */
+                      "surface-container-low": "#f5f0e8",
+                      "surface-container-high": "#e8ddd0",
+                      "surface-container-highest": "#d9cdc2"
               },
               "borderRadius": {
-                      "DEFAULT": "8px",
-                      "lg": "8px",
-                      "xl": "8px",
+                      "DEFAULT": "4px",
+                      "lg": "4px",
+                      "xl": "4px",
                       "full": "999px"
               },
               "spacing": {
@@ -134,21 +137,27 @@
 
     <main class="flex-grow">
         <!-- Hero Section -->
-        <section class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105 hero-bg-video">
+        <section class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, #0a192f 0%, #1e3a5f 100%);">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105 hero-bg-video opacity-40">
                 <source src="${ctx}/assets/images/hero-main.webm?v=1.0.0" type="video/webm">
             </video>
-            <div class="absolute inset-0 bg-black/15 z-10"></div>
+            <div class="absolute inset-0 z-10" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.3) 0%, rgba(10, 25, 47, 0.5) 100%);"></div>
             <div class="relative z-20 text-center px-margin-mobile flex flex-col items-center select-none">
-                <h1 class="text-white font-light tracking-[0.05em] uppercase mb-4 leading-[0.85] text-center" style="font-family: var(--font-headline); font-size: clamp(80px, 15vw, 220px);">
+                <span class="font-sans text-xs font-semibold tracking-[0.15em] uppercase mb-6 text-accent">Premium Streetwear</span>
+                <h1 class="text-white font-light tracking-[-0.05em] mb-8 leading-[1.05] text-center" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 8vw, 88px); font-weight: 400;">
                     AURA
                 </h1>
                 <p class="font-sans text-white text-xs sm:text-sm md:text-base tracking-[0.45em] uppercase mb-12 font-light">
                     AUTUMN / WINTER 2026
                 </p>
-                <a class="inline-flex items-center justify-center px-8 py-3.5 md:px-12 md:py-4 border border-white text-white font-sans text-xs md:text-sm tracking-[0.2em] uppercase rounded-none bg-transparent hover:bg-background hover:text-primary transition-all duration-500 ease-in-out" href="${ctx}/products">
-                    DISCOVER COLLECTION
-                </a>
+                <div class="flex gap-4 flex-wrap justify-center">
+                    <a class="inline-flex items-center justify-center px-10 py-4 border border-accent text-primary font-sans text-xs md:text-sm tracking-[0.12em] uppercase rounded-full bg-accent hover:bg-accent-light transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5" href="${ctx}/products">
+                        DISCOVER COLLECTION
+                    </a>
+                    <a class="inline-flex items-center justify-center px-10 py-4 border border-white/60 text-white font-sans text-xs md:text-sm tracking-[0.12em] uppercase rounded-full bg-transparent hover:bg-white/15 backdrop-blur-sm transition-all duration-300" href="${ctx}/collections">
+                        VIEW LOOKBOOK
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -201,21 +210,21 @@
         <!-- Category Grid -->
         <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low" href="${ctx}/products?gender=Men">
+                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Men">
                     <img alt="Men's Collection" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-men.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 bg-black/10 flex items-end p-6"><span class="font-label-caps text-label-caps text-on-primary uppercase tracking-widest">Men</span></div>
+                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Men</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low" href="${ctx}/products?gender=Women">
+                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Women">
                     <img alt="Women's Collection" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-women.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 bg-black/10 flex items-end p-6"><span class="font-label-caps text-label-caps text-on-primary uppercase tracking-widest">Women</span></div>
+                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Women</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low" href="${ctx}/products?category=Footwear">
+                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Footwear">
                     <img alt="Footwear" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-footwear.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 bg-black/10 flex items-end p-6"><span class="font-label-caps text-label-caps text-on-primary uppercase tracking-widest">Footwear</span></div>
+                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Footwear</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low" href="${ctx}/products?category=Accessories">
+                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Accessories">
                     <img alt="Accessories" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-accessories.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 bg-black/10 flex items-end p-6"><span class="font-label-caps text-label-caps text-on-primary uppercase tracking-widest">Accessories</span></div>
+                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(10, 25, 47, 0.1) 0%, rgba(10, 25, 47, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Accessories</span></div>
                 </a>
             </div>
         </section>
@@ -303,29 +312,29 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-surface-container-low w-full py-section-gap-mobile md:py-32 border-t border-outline-variant">
+    <footer class="bg-primary w-full py-section-gap-mobile md:py-32 border-t border-outline-variant">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
             <div class="flex flex-col gap-stack-md col-span-1 md:col-span-2 pr-0 md:pr-12">
-                <h4 class="font-headline-sm text-headline-sm font-medium text-primary">AuraWear</h4>
-                <p class="font-body-md text-body-md text-on-surface-variant max-w-md">
+                <h4 class="font-headline-sm text-headline-sm font-medium text-white" style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; letter-spacing: -0.04em;">AuraWear</h4>
+                <p class="font-body-md text-body-md text-white/80 max-w-md leading-relaxed">
                     High-end minimalist apparel designed with organic precision. We focus on textile clarity and essential silhouettes for the modern wardrobe.
                 </p>
-                <p class="font-label-md text-label-md text-on-surface-variant mt-stack-lg">
+                <p class="font-label-md text-label-md text-white/60 mt-stack-lg">
                     © 2025 AuraWear. All rights reserved.
                 </p>
             </div>
             <div class="flex flex-col gap-stack-md mt-stack-lg md:mt-0">
-                <h5 class="font-label-caps text-label-caps text-primary uppercase mb-2">Explore</h5>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="${ctx}/products">Shop All</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="${ctx}/products?gender=Men">New Arrivals</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="${ctx}/products?category=Accessories">Essentials</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="${ctx}/collections">Collections</a>
+                <h5 class="font-label-caps text-label-caps text-accent uppercase mb-2 font-semibold tracking-wider">Explore</h5>
+                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/products">Shop All</a>
+                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/products?gender=Men">New Arrivals</a>
+                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/products?category=Accessories">Essentials</a>
+                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/collections">Collections</a>
             </div>
             <div class="flex flex-col gap-stack-md mt-stack-lg md:mt-0">
-                <h5 class="font-label-caps text-label-caps text-primary uppercase mb-2">Support</h5>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="mailto:support@aurawear.com">Contact</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="${ctx}/my-orders">Shipping &amp; Returns</a>
-                <a class="font-body-md text-body-md text-on-surface-variant hover:text-primary" href="javascript:void(0)" onclick="openSizeGuide()">Size Guide</a>
+                <h5 class="font-label-caps text-label-caps text-accent uppercase mb-2 font-semibold tracking-wider">Support</h5>
+                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="mailto:support@aurawear.com">Contact</a>
+                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/my-orders">Shipping &amp; Returns</a>
+                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="javascript:void(0)" onclick="openSizeGuide()">Size Guide</a>
             </div>
         </div>
     </footer>

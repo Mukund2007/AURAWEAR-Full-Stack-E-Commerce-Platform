@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
@@ -11,8 +12,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Orders — AuraWear</title>
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
-    <link rel="stylesheet" href="${ctx}/assets/css/orders.css?v=1.0.4">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
+    <link rel="stylesheet" href="${ctx}/assets/css/orders.css?v=200">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
@@ -122,16 +123,16 @@
                                                     <fmt:formatDate value="${parsedDate}" pattern="MMM dd, yyyy" />
                                                 </c:when>
                                                 <c:otherwise>
-                                                    ${order[4]}
+                                                    <c:out value="${order[4]}" />
                                                 </c:otherwise>
                                             </c:choose>
                                         </span>
-                                        <h3 class="order-product-name">${order[3]}</h3>
+                                        <h3 class="order-product-name"><c:out value="${order[3]}" /></h3>
                                         
                                         <!-- Specs Row -->
                                         <div class="order-specs-row">
                                             <c:if test="${not empty order[6]}">
-                                                <span>Size: ${order[6]}</span>
+                                                <span>Size: <c:out value="${order[6]}" /></span>
                                             </c:if>
                                             <c:if test="${not empty order[6] && not empty order[7]}">
                                                 <span>&nbsp;&nbsp;</span>
@@ -191,7 +192,7 @@
                                             </c:when>
                                             <c:otherwise>
                                                 <span class="order-badge">
-                                                    <span class="badge-dot"></span> ${status}
+                                                    <span class="badge-dot"></span> <c:out value="${status}" />
                                                 </span>
                                             </c:otherwise>
                                         </c:choose>
@@ -215,7 +216,7 @@
                                             <!-- Main Action Button (Outline button) -->
                                             <c:choose>
                                                 <c:when test="${status == 'Placed' || status == 'COD_PENDING' || status == 'COD_CONFIRMED' || status == 'Shipped' || status == 'PAID'}">
-                                                    <button class="order-action-btn" onclick="event.stopPropagation(); openTracker('${order[0]}', '${order[3].replace("'", "\\'")}', '${status}', '${order[4]}')">
+                                                    <button class="order-action-btn" onclick="event.stopPropagation(); openTracker('${order[0]}', '${fn:replace(fn:escapeXml(order[3]), "'", "\\'")}', '${fn:replace(fn:escapeXml(status), "'", "\\'")}', '${order[4]}')">
                                                         + Track Order
                                                     </button>
                                                 </c:when>

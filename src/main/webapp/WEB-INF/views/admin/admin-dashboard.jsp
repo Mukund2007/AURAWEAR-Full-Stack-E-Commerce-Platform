@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -293,13 +295,13 @@
                         <c:forEach var="order" items="${recentOrders}">
                             <tr>
                                 <td><strong>#${order.id}</strong></td>
-                                <td>${order.userEmail}</td>
+                                <td><c:out value="${order.userEmail}" /></td>
                                 <td>
                                     <fmt:formatDate value="${order.createdAt}" pattern="yyyy-MM-dd HH:mm" />
                                 </td>
                                 <td>₹<fmt:formatNumber value="${order.total}" type="number" maxFractionDigits="0" /></td>
                                 <td>
-                                    <span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span>
+                                    <span class="status-badge status-<c:out value="${fn:toLowerCase(order.status)}" />"><c:out value="${order.status}" /></span>
                                 </td>
                             </tr>
                         </c:forEach>

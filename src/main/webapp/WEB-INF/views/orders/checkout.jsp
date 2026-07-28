@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
@@ -13,8 +14,8 @@
     <title>Checkout — AuraWear</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
-    <link rel="stylesheet" href="${ctx}/assets/css/checkout.css?v=4">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
+    <link class="checkout-style" rel="stylesheet" href="${ctx}/assets/css/checkout.css?v=200">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -177,8 +178,8 @@
                                  onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                                  alt="${item.productName}">
                             <div class="summary-item-info">
-                                <p class="summary-item-name">${item.productName}</p>
-                                <p class="summary-item-meta">Size: ${item.size} · Qty: ${item.quantity}</p>
+                                <p class="summary-item-name"><c:out value="${item.productName}" /></p>
+                                <p class="summary-item-meta">Size: <c:out value="${item.size}" /> · Qty: ${item.quantity}</p>
                             </div>
                             <p class="summary-item-price">₹<fmt:formatNumber value="${item.price * item.quantity}" maxFractionDigits="0"/></p>
                         </div>

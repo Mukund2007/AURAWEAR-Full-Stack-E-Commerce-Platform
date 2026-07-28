@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
@@ -21,9 +22,14 @@
         <p class="modal-sub">Sign in to your account</p>
 
         <div class="modal-error" id="modalError" <c:if test="${empty param.loginError}">style="display:none;"</c:if>>
-            <c:if test="${not empty param.loginError}">
-                Invalid email or password.
-            </c:if>
+            <c:choose>
+                <c:when test="${param.loginError == 'unverified'}">
+                    Please verify your account first.
+                </c:when>
+                <c:when test="${not empty param.loginError}">
+                    Invalid email or password.
+                </c:when>
+            </c:choose>
         </div>
 
         <form action="${ctx}/login" method="post">

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
@@ -10,11 +11,11 @@
     <jsp:include page="partials/head-includes.jsp" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${product.name} — AuraWear</title>
+    <title><c:out value="${product.name}" /> — AuraWear</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
-    <link rel="stylesheet" href="${ctx}/assets/css/product-details.css?v=120">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
+    <link rel="stylesheet" href="${ctx}/assets/css/product-details.css?v=200">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
@@ -27,9 +28,9 @@
         <div class="breadcrumb">
             <a href="${ctx}/home">Home</a>
             <span class="breadcrumb-sep"><span class="material-symbols-outlined">chevron_right</span></span>
-            <a href="${ctx}/products?category=${product.category}">${product.category}</a>
+            <a href="${ctx}/products?category=<c:out value="${product.category}"/>"><c:out value="${product.category}"/></a>
             <span class="breadcrumb-sep"><span class="material-symbols-outlined">chevron_right</span></span>
-            <span class="breadcrumb-active">${product.name}</span>
+            <span class="breadcrumb-active"><c:out value="${product.name}"/></span>
         </div>
 
         <div class="details-container">
@@ -38,13 +39,13 @@
             <div class="image-section">
                 <img src="<c:choose><c:when test="${fn:startsWith(product.image, 'http')}">${product.image}</c:when><c:otherwise>${ctx}/assets/images/${product.image}</c:otherwise></c:choose>"
                      onerror="this.src='${ctx}/assets/images/fallback.jpg'"
-                     alt="${product.name}">
+                     alt="<c:out value="${product.name}"/>">
             </div>
 
             <!-- RIGHT: INFO -->
             <div class="info-section">
-                <div class="product-category">${product.category}</div>
-                <h1>${product.name}</h1>
+                <div class="product-category"><c:out value="${product.category}"/></div>
+                <h1><c:out value="${product.name}"/></h1>
 
                 <!-- RATING -->
                 <div class="rating-row">
@@ -110,7 +111,7 @@
                 <div>
                     <div class="color-label-row">
                         <span class="color-title">Color:</span>
-                        <span class="color-value">${product.color}</span>
+                        <span class="color-value"><c:out value="${product.color}"/></span>
                     </div>
                     <c:set var="colorLower" value="${fn:toLowerCase(product.color)}" />
                     <c:choose>
@@ -126,7 +127,7 @@
                         <c:otherwise><c:set var="colorHex" value="${colorLower}" /></c:otherwise>
                     </c:choose>
                     <div class="colors" style="margin-top: 12px;">
-                        <span class="color-dot active" style="background-color: ${colorHex}; border: 1px solid var(--pd-outline-variant);" title="${product.color}"></span>
+                        <span class="color-dot active" style="background-color: <c:out value="${colorHex}"/>; border: 1px solid var(--pd-outline-variant);" title="<c:out value="${product.color}"/>"></span>
                     </div>
                 </div>
 
@@ -203,10 +204,10 @@
                             <h3 class="specs-title">DETAILS</h3>
                             <p class="specs-text">High-density outsole, custom traction pattern, breathable construction, premium eyelets, and reinforced support.</p>
                             <div class="specs-mini-list">
-                                <div class="specs-mini-item"><span>Brand</span><strong>${product.brand}</strong></div>
-                                <div class="specs-mini-item"><span>Type</span><strong>${product.type}</strong></div>
-                                <div class="specs-mini-item"><span>Color</span><strong>${product.color}</strong></div>
-                                <div class="specs-mini-item"><span>Gender</span><strong>${product.gender}</strong></div>
+                                <div class="specs-mini-item"><span>Brand</span><strong><c:out value="${product.brand}" /></strong></div>
+                                <div class="specs-mini-item"><span>Type</span><strong><c:out value="${product.type}" /></strong></div>
+                                <div class="specs-mini-item"><span>Color</span><strong><c:out value="${product.color}" /></strong></div>
+                                <div class="specs-mini-item"><span>Gender</span><strong><c:out value="${product.gender}" /></strong></div>
                             </div>
                         </div>
                         <div class="specs-col">
@@ -223,10 +224,10 @@
                             <h3 class="specs-title">DETAILS</h3>
                             <p class="specs-text">Compact profile, reinforced stitching, subtle branding, and high-durability metallic hardware.</p>
                             <div class="specs-mini-list">
-                                <div class="specs-mini-item"><span>Brand</span><strong>${product.brand}</strong></div>
-                                <div class="specs-mini-item"><span>Type</span><strong>${product.type}</strong></div>
-                                <div class="specs-mini-item"><span>Color</span><strong>${product.color}</strong></div>
-                                <div class="specs-mini-item"><span>Gender</span><strong>${product.gender}</strong></div>
+                                <div class="specs-mini-item"><span>Brand</span><strong><c:out value="${product.brand}" /></strong></div>
+                                <div class="specs-mini-item"><span>Type</span><strong><c:out value="${product.type}" /></strong></div>
+                                <div class="specs-mini-item"><span>Color</span><strong><c:out value="${product.color}" /></strong></div>
+                                <div class="specs-mini-item"><span>Gender</span><strong><c:out value="${product.gender}" /></strong></div>
                             </div>
                         </div>
                         <div class="specs-col">
@@ -243,10 +244,10 @@
                             <h3 class="specs-title">DETAILS</h3>
                             <p class="specs-text">Water-repellent finish, internal utility pockets, YKK Aquaguard zippers, and reinforced articulated seams.</p>
                             <div class="specs-mini-list">
-                                <div class="specs-mini-item"><span>Brand</span><strong>${product.brand}</strong></div>
-                                <div class="specs-mini-item"><span>Type</span><strong>${product.type}</strong></div>
-                                <div class="specs-mini-item"><span>Color</span><strong>${product.color}</strong></div>
-                                <div class="specs-mini-item"><span>Gender</span><strong>${product.gender}</strong></div>
+                                <div class="specs-mini-item"><span>Brand</span><strong><c:out value="${product.brand}" /></strong></div>
+                                <div class="specs-mini-item"><span>Type</span><strong><c:out value="${product.type}" /></strong></div>
+                                <div class="specs-mini-item"><span>Color</span><strong><c:out value="${product.color}" /></strong></div>
+                                <div class="specs-mini-item"><span>Gender</span><strong><c:out value="${product.gender}" /></strong></div>
                             </div>
                         </div>
                         <div class="specs-col">
@@ -384,14 +385,14 @@
                             <div class="related-img-wrap">
                                 <img src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
                                      onerror="this.src='${ctx}/assets/images/fallback.jpg'"
-                                     alt="${p.name}">
+                                     alt="<c:out value="${p.name}"/>">
                                 <c:if test="${p.discount > 0}">
                                     <span class="related-badge">${p.discount}% OFF</span>
                                 </c:if>
                             </div>
                             <div class="related-info">
-                                <span class="related-category">${p.category}</span>
-                                <h4 class="related-name">${p.name}</h4>
+                                <span class="related-category"><c:out value="${p.category}"/></span>
+                                <h4 class="related-name"><c:out value="${p.name}"/></h4>
                                 <div class="related-bottom">
                                     <div class="related-price-row">
                                         <span class="related-price">₹<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></span>

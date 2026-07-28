@@ -445,10 +445,10 @@ body {
 
 /* ── FOOTER SECTION ──────────────────────────────────────────── */
 .footer-section {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background-color: var(--primary-brand);
+    color: #ffffff;
     padding: var(--section-gap-mobile) var(--margin-mobile) 24px;
-    border-top: 1.5px solid var(--border-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     transition: background-color var(--transition-luxe), color var(--transition-luxe), border-color var(--transition-luxe);
     width: 100%;
 }
@@ -486,14 +486,16 @@ body {
     font-weight: 900;
     letter-spacing: -0.03em;
     text-transform: uppercase;
+    color: #ffffff;
 }
 
 .footer-desc {
     font-family: var(--font-body);
     font-size: 14px;
     line-height: 1.6;
-    opacity: 0.55;
+    opacity: 0.8;
     max-width: 400px;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-socials {
@@ -506,14 +508,15 @@ body {
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.08em;
-    opacity: 0.55;
+    opacity: 0.8;
     transition: opacity var(--transition-normal);
     text-decoration: none;
-    color: var(--text-color);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-socials a:hover {
     opacity: 1;
+    color: var(--premium-accent);
 }
 
 .footer-links-col {
@@ -528,8 +531,9 @@ body {
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    opacity: 0.8;
+    opacity: 0.9;
     margin: 0;
+    color: var(--premium-accent);
 }
 
 .footer-links-list {
@@ -544,21 +548,22 @@ body {
 .footer-links-list a {
     font-family: var(--font-body);
     font-size: 13px;
-    opacity: 0.55;
+    opacity: 0.8;
     transition: opacity var(--transition-normal);
     text-decoration: none;
-    color: var(--text-color);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 .footer-links-list a:hover {
     opacity: 1;
+    color: var(--premium-accent);
 }
 
 .footer-bottom-row {
     max-width: var(--container-max);
     margin: var(--stack-lg) auto 0;
     padding-top: 24px;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-copyright {

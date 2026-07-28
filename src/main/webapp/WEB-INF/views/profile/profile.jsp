@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c"  uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
@@ -13,8 +14,8 @@
     <title>My Account — AuraWear</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
-    <link rel="stylesheet" href="${ctx}/assets/css/profile.css">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
+    <link rel="stylesheet" href="${ctx}/assets/css/profile.css?v=200">
 
 </head>
 <body>
@@ -39,7 +40,7 @@
             <div class="profile-avatar">
                 <c:choose>
                     <c:when test="${not empty sessionScope.user}">
-                        ${fn:substring(sessionScope.user.name, 0, 1)}
+                        <c:out value="${fn:substring(sessionScope.user.name, 0, 1)}" />
                     </c:when>
                     <c:otherwise>
                         <i class="fa fa-user"></i>

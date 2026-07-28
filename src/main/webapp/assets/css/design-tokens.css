@@ -1,22 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
 :root {
     /* Fonts */
-    --font-headline: 'DM Sans', sans-serif;
+    --font-headline: 'Cormorant Garamond', serif;
     --font-body: 'DM Sans', sans-serif;
+    --font-display: 'Cormorant Garamond', serif;
 
-    /* Color Palette */
-    --primary-brand: #000000;       /* Deep Navy */
-    --secondary-brand: #465F7D;     /* Muted Steel Blue */
-    --surface-color: #D9CDC2;       /* Warm Stone */
-    --bg-color: #F7F2EC;            /* Warm Ivory */
-    --primary-text: #000000;
-    --secondary-text: #66635E;
-    --disabled-text: #A39D97;
-    --border-color: #D8D1CA;
-    --success-color: #5B7358;
-    --error-color: #8C3B3B;         /* Burgundy / Wishlist */
-    --premium-accent: #B89A63;      /* Champagne Gold */
+    /* Premium Color Palette (Luxury Editorial Black, Warm Ivory & Champagne Gold) */
+    --primary-brand: #000000;       /* Rich Black */
+    --primary-brand-light: #1c1c1c;  /* Subtle Dark Charcoal */
+    --secondary-brand: #222222;      /* Off-Black */
+    --accent-navy: #333333;          /* Dark Slate Gray */
+    --surface-color: #f5f2ee;       /* Warm Stone Sand */
+    --bg-color: #faf8f5;             /* Warm Ivory / Linen */
+    --primary-text: #000000;        /* Bold Solid Black */
+    --secondary-text: #66635e;       /* Sophisticated Warm Gray */
+    --disabled-text: #a39d97;       /* Muted Warm Stone */
+    --border-color: #e2d8c8;         /* Elegant Soft Border */
+    --success-color: #5b7358;        /* Refined Sage Green */
+    --error-color: #8c3b3b;          /* Deep Crimson Burgundy */
+    --premium-accent: #b89a63;       /* Muted Champagne Gold */
+    --premium-accent-light: #e5d7ba; /* Pale Linen Gold */
+    --silver-accent: #a39d97;        /* Sophisticated Warm Silver */
 
     /* Legacy compatibility mappings to prevent breaking existing classes */
     --bg-color-solid: var(--primary-brand);
@@ -40,17 +46,21 @@
     --space-2xl: 64px;
     --space-3xl: 96px;
 
-    /* Border Radius */
-    --radius-default: 8px;
-    --radius-card: 8px;
-    --radius-button: 8px;
-    --radius-input: 8px;
-    --radius-image: 6px;
+    /* Premium Border Radius */
+    --radius-default: 4px;
+    --radius-card: 4px;
+    --radius-button: 4px;
+    --radius-input: 4px;
+    --radius-image: 2px;
     --radius-pill: 999px;
 
-    /* Shadows */
-    --shadow-subtle: 0 2px 12px rgba(28, 46, 74, 0.04);
-    --shadow-hover: 0 8px 24px rgba(28, 46, 74, 0.08);
+    /* Premium Shadows */
+    --shadow-subtle: 0 2px 8px rgba(10, 25, 47, 0.04);
+    --shadow-soft: 0 4px 16px rgba(10, 25, 47, 0.06);
+    --shadow-medium: 0 8px 24px rgba(10, 25, 47, 0.08);
+    --shadow-hover: 0 12px 32px rgba(10, 25, 47, 0.12);
+    --shadow-elevated: 0 16px 48px rgba(10, 25, 47, 0.15);
+    --shadow-glow: 0 0 24px rgba(201, 169, 98, 0.15);
 
     /* Layout */
     --container-max: 1440px;
@@ -67,11 +77,12 @@
     --overlay-light: rgba(0, 0, 0, 0.25);
     --overlay-medium: rgba(0, 0, 0, 0.4);
 
-    /* Transitions */
-    --transition-fast: 150ms cubic-bezier(.22,.61,.36,1);
-    --transition-normal: 250ms cubic-bezier(.22,.61,.36,1);
-    --transition-slow: 350ms cubic-bezier(.22,.61,.36,1);
-    --transition-luxe: 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Premium Transitions */
+    --transition-fast: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-luxe: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html, body {

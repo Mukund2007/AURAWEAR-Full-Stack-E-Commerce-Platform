@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c"  uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
@@ -411,14 +412,14 @@
                         <td>
                             <img src="<c:choose><c:when test="${fn:startsWith(prod.image, 'http')}">${prod.image}</c:when><c:otherwise>${ctx}/assets/images/${prod.image}</c:otherwise></c:choose>" class="product-thumbnail" alt="${prod.name}" onerror="this.src='${ctx}/assets/images/fallback.jpg';">
                         </td>
-                        <td><strong>${prod.name}</strong></td>
-                        <td>${prod.category}</td>
-                        <td>${prod.type}</td>
+                        <td><strong><c:out value="${prod.name}" /></strong></td>
+                        <td><c:out value="${prod.category}" /></td>
+                        <td><c:out value="${prod.type}" /></td>
                         <td>₹<fmt:formatNumber value="${prod.price}" type="number" maxFractionDigits="0" /></td>
                         <td>₹<fmt:formatNumber value="${prod.originalPrice}" type="number" maxFractionDigits="0" /></td>
-                        <td>${prod.size}</td>
-                        <td>${prod.color}</td>
-                        <td>${prod.gender}</td>
+                        <td><c:out value="${prod.size}" /></td>
+                        <td><c:out value="${prod.color}" /></td>
+                        <td><c:out value="${prod.gender}" /></td>
                         <td>
                             <c:choose>
                                 <c:when test="${prod.stockQuantity > 5}">
@@ -433,23 +434,31 @@
                             </c:choose>
                         </td>
                         <td>
-                            <button class="btn-edit" onclick="openEditModal(
-                                '${prod.id}', 
-                                '${prod.name.replace("'", "\\'")}', 
-                                '${prod.price}', 
-                                '${prod.originalPrice}', 
-                                '${prod.discount}', 
-                                '${prod.category}', 
-                                '${prod.type}', 
-                                '${prod.size}', 
-                                '${prod.color}', 
-                                '${prod.gender}', 
-                                '${prod.rating}', 
-                                '${prod.reviews}', 
-                                '${prod.brand}', 
-                                '${prod.image}',
-                                '${prod.stockQuantity}'
-                            )">Edit</button>
+                            <%-- ✅ SECURITY: pass only the numeric ID to JS; all text fields are
+                                 stored in a data-json attribute with fn:escapeXml HTML-escaping,
+                                 then read by openEditModal() via JSON.parse. This prevents any
+                                 product field containing quotes/HTML/JS from injecting into the
+                                 onclick attribute. --%>
+                            <button class="btn-edit"
+                                    data-product-id="${prod.id}"
+                                    data-product-json="{
+                                        &quot;id&quot;:${prod.id},
+                                        &quot;name&quot;:&quot;<c:out value="${prod.name}" />&quot;,
+                                        &quot;price&quot;:${prod.price},
+                                        &quot;originalPrice&quot;:${prod.originalPrice},
+                                        &quot;discount&quot;:${prod.discount},
+                                        &quot;category&quot;:&quot;<c:out value="${prod.category}" />&quot;,
+                                        &quot;type&quot;:&quot;<c:out value="${prod.type}" />&quot;,
+                                        &quot;size&quot;:&quot;<c:out value="${prod.size}" />&quot;,
+                                        &quot;color&quot;:&quot;<c:out value="${prod.color}" />&quot;,
+                                        &quot;gender&quot;:&quot;<c:out value="${prod.gender}" />&quot;,
+                                        &quot;rating&quot;:${prod.rating},
+                                        &quot;reviews&quot;:${prod.reviews},
+                                        &quot;brand&quot;:&quot;<c:out value="${prod.brand}" />&quot;,
+                                        &quot;image&quot;:&quot;<c:out value="${prod.image}" />&quot;,
+                                        &quot;stockQuantity&quot;:${prod.stockQuantity}
+                                    }"
+                                    onclick="openEditModalFromData(this)">Edit</button>
                             <form action="${ctx}/admin/products" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                 <input type="hidden" name="_csrf" value="${_csrf}" />
                                 <input type="hidden" name="action" value="delete">
@@ -567,6 +576,36 @@
         document.getElementById('editBrand').value = brand;
         document.getElementById('editImage').value = image;
         document.getElementById('editStockQuantity').value = stockQuantity;
+        document.getElementById('editModal').style.display = 'flex';
+    }
+
+    /**
+     * Safe edit-modal opener: reads product data from a data attribute
+     * (HTML-escaped by c:out server-side) and parses it as JSON.
+     * Never interpolates user-controlled text directly into JS string arguments.
+     */
+    function openEditModalFromData(btn) {
+        const raw = btn.getAttribute('data-product-json');
+        // The attribute value is HTML-encoded by JSP; decode it then parse JSON.
+        const decoded = raw
+            .replace(/&quot;/g, '"')
+            .replace(/&amp;/g, '&')
+            .replace(/&lt;/g,  '<')
+            .replace(/&gt;/g,  '>');
+        const p = JSON.parse(decoded);
+        document.getElementById('editProductId').value    = p.id;
+        document.getElementById('editName').value         = p.name;
+        document.getElementById('editPrice').value        = Math.round(p.price);
+        document.getElementById('editOriginalPrice').value= Math.round(p.originalPrice);
+        document.getElementById('editDiscount').value     = p.discount;
+        document.getElementById('editCategory').value     = p.category;
+        document.getElementById('editType').value         = p.type;
+        document.getElementById('editSize').value         = p.size;
+        document.getElementById('editColor').value        = p.color;
+        document.getElementById('editGender').value       = p.gender;
+        document.getElementById('editBrand').value        = p.brand;
+        document.getElementById('editImage').value        = p.image;
+        document.getElementById('editStockQuantity').value= p.stockQuantity;
         document.getElementById('editModal').style.display = 'flex';
     }
 

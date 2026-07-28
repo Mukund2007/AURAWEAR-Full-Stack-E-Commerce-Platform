@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%-- Cache bust: v200 --%>
+<%@ taglib prefix="c"   uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
@@ -11,8 +13,8 @@
     <title>Order Placed — AuraWear</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=118">
-    <link rel="stylesheet" href="${ctx}/assets/css/success.css">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
+    <link rel="stylesheet" href="${ctx}/assets/css/success.css?v=200">
 </head>
 <body>
 
@@ -47,16 +49,16 @@
                 if (typeof gtag === 'function') {
                     gtag('event', 'purchase', {
                         transaction_id: '${sessionScope.purchaseOrderId}',
-                        value: parseFloat('${sessionScope.purchaseTotal}'),
+                        value: parseFloat('${sessionScope.purchaseTotal}') || 0,
                         currency: 'INR',
                         items: [
                             <c:forEach var="item" items="${sessionScope.purchaseItems}" varStatus="status">
                             {
-                                item_id: '${item.productId}',
-                                item_name: '${item.productName}',
-                                price: parseFloat('${item.price}'),
-                                quantity: parseInt('${item.quantity}'),
-                                item_size: '${item.size}'
+                                item_id: parseInt('${item.productId}') || 0,
+                                item_name: '${fn:replace(fn:escapeXml(item.productName), "'", "\\'")}',
+                                price: parseFloat('${item.price}') || 0,
+                                quantity: parseInt('${item.quantity}') || 0,
+                                item_size: '${fn:replace(fn:escapeXml(item.size), "'", "\\'")}'
                             }${not status.last ? ',' : ''}
                             </c:forEach>
                         ]

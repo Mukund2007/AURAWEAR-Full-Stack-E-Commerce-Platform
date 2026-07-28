@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v200 --%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -259,7 +260,7 @@
                         <c:forEach var="order" items="${orders}">
                             <tr>
                                 <td><strong>#${order.id}</strong></td>
-                                <td>${order.userEmail}</td>
+                                <td><c:out value="${order.userEmail}" /></td>
                                 <td>
                                     <fmt:formatDate value="${order.createdAt}" pattern="yyyy-MM-dd HH:mm" />
                                 </td>
@@ -267,8 +268,8 @@
                                     <ul class="order-items-list">
                                         <c:forEach var="item" items="${order.items}">
                                             <li class="order-item-detail">
-                                                <span>${item.productName}</span>
-                                                <span class="item-size">${item.size}</span>
+                                                <span><c:out value="${item.productName}" /></span>
+                                                <span class="item-size"><c:out value="${item.size}" /></span>
                                                 <span class="item-qty">x${item.quantity}</span>
                                                 <span style="float: right;">₹<fmt:formatNumber value="${item.price * item.quantity}" type="number" maxFractionDigits="0" /></span>
                                             </li>
@@ -279,10 +280,10 @@
                                     <c:choose>
                                         <c:when test="${not empty order.shippingName}">
                                             <div class="shipping-cell">
-                                                <span class="ship-name">${order.shippingName}</span>
-                                                <span class="ship-phone"><i class="fa-solid fa-phone" style="font-size:10px;"></i> ${order.shippingPhone}</span><br>
-                                                ${order.shippingAddress}<br>
-                                                ${order.shippingCity}, ${order.shippingState} - ${order.shippingPincode}
+                                                <span class="ship-name"><c:out value="${order.shippingName}" /></span>
+                                                <span class="ship-phone"><i class="fa-solid fa-phone" style="font-size:10px;"></i> <c:out value="${order.shippingPhone}" /></span><br>
+                                                <c:out value="${order.shippingAddress}" /><br>
+                                                <c:out value="${order.shippingCity}" />, <c:out value="${order.shippingState}" /> - <c:out value="${order.shippingPincode}" />
                                             </div>
                                         </c:when>
                                         <c:otherwise>
