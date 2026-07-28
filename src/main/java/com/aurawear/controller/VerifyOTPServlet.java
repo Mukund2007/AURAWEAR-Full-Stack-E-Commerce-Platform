@@ -33,7 +33,7 @@ public class VerifyOTPServlet extends HttpServlet {
 
             System.out.println("[OTP_VERIFY] STEP 2 OTP parameter read");
             String enteredOtp = request.getParameter("otp");
-            System.out.println("[OTP_VERIFY] Entered OTP: '" + enteredOtp + "'");
+            // ✅ SECURITY: do NOT log the entered OTP — it is a single-use secret
 
             System.out.println("[OTP_VERIFY] STEP 3 Session loaded");
             HttpSession session = request.getSession(true);
@@ -54,7 +54,7 @@ public class VerifyOTPServlet extends HttpServlet {
             System.out.println("  - pendingPassword: " + (pendingPassword != null ? "[PRESENT]" : "[NULL]"));
             System.out.println("  - pendingName: " + pendingName);
             System.out.println("  - pendingInterests: " + pendingInterests);
-            System.out.println("  - otp (realOtp): " + realOtp);
+            System.out.println("  - otp (realOtp): [REDACTED]"); // ✅ SECURITY: never log OTP
             System.out.println("  - otpExpiry: " + otpExpiry);
             System.out.println("  - otpCreatedAt: " + otpCreatedAt);
 
@@ -180,18 +180,9 @@ public class VerifyOTPServlet extends HttpServlet {
             System.err.println("[OTP_VERIFY] Stack Trace:");
             e.printStackTrace();
             
-            // Format exception details to return on the error page
-            java.io.StringWriter sw = new java.io.StringWriter();
-            java.io.PrintWriter pw = new java.io.PrintWriter(sw);
-            e.printStackTrace(pw);
-            String stackTrace = sw.toString();
+            String errorMsg = "An unexpected error occurred during OTP verification.";
 
-            String errorMsg = "An unexpected error occurred during OTP verification.<br/>" +
-                              "<b>Exception:</b> " + e.getClass().getName() + ": " + e.getMessage() + "<br/>" +
-                              "<b>Location:</b> " + fileName + ":" + lineNumber;
-            
             request.setAttribute("error", errorMsg);
-            request.setAttribute("stackTrace", stackTrace);
             request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
         }
     }

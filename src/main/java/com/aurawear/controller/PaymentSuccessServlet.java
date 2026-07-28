@@ -27,12 +27,11 @@ public class PaymentSuccessServlet extends HttpServlet {
         String email = user.getEmail();
 
         String razorpayPaymentId = request.getParameter("razorpay_payment_id");
-        String razorpayOrderId = request.getParameter("razorpay_order_id");
+        String razorpayOrderId   = request.getParameter("razorpay_order_id");
         String razorpaySignature = request.getParameter("razorpay_signature");
 
-        System.out.println("[PaymentSuccessServlet] Read razorpay_payment_id: " + razorpayPaymentId);
-        System.out.println("[PaymentSuccessServlet] Read razorpay_order_id: " + razorpayOrderId);
-        System.out.println("[PaymentSuccessServlet] Read razorpay_signature: " + razorpaySignature);
+        // ✅ SECURITY: do NOT log payment ID or signature — PCI-DSS / log-leakage concern
+        System.out.println("[PaymentSuccessServlet] Payment callback received");
 
         if (email == null || email.trim().isEmpty()) {
             System.err.println("[PaymentSuccessServlet] Error: user_email read from session is null or empty!");
@@ -46,12 +45,26 @@ public class PaymentSuccessServlet extends HttpServlet {
             return;
         }
 
+        // ✅ SECURITY: verify the order ID came from this server's session (anti-replay)
+        String expectedOrderId = (String) session.getAttribute("pendingRazorpayOrderId");
+        if (expectedOrderId == null || !expectedOrderId.equals(razorpayOrderId)) {
+            System.err.println("[PaymentSuccessServlet] Order ID mismatch — possible replay attack. " +
+                               "Expected=" + expectedOrderId + " Got=(redacted)");
+            response.sendRedirect(request.getContextPath() + "/checkout?error=invalid_order");
+            return;
+        }
+        // Consume the pending order ID so it cannot be replayed a second time
+        session.removeAttribute("pendingRazorpayOrderId");
+        session.removeAttribute("pendingAmountInPaise");
+
         try {
             // Verify signature: HmacSHA256(order_id + "|" + payment_id, secret)
-            String signatureData = razorpayOrderId + "|" + razorpayPaymentId;
-            String generatedSignature = calculateHmacSHA256(signatureData, RazorpayConfig.getKeySecret());
+            String signatureData      = razorpayOrderId + "|" + razorpayPaymentId;
+            byte[] generatedSigBytes  = calculateHmacSHA256Bytes(signatureData, RazorpayConfig.getKeySecret());
+            byte[] receivedSigBytes   = hexToBytes(razorpaySignature);
 
-            if (!generatedSignature.equals(razorpaySignature)) {
+            // ✅ SECURITY: constant-time comparison — prevents timing oracle on signature bytes
+            if (!java.security.MessageDigest.isEqual(generatedSigBytes, receivedSigBytes)) {
                 System.out.println("[PaymentSuccessServlet] Signature verification: FAILED");
                 throw new SecurityException("Cryptographic signature mismatch! Invalid payment.");
             }
@@ -125,15 +138,22 @@ public class PaymentSuccessServlet extends HttpServlet {
         }
     }
 
-    private String calculateHmacSHA256(String data, String keySecret) throws Exception {
+    /** Returns raw HMAC-SHA256 bytes (for constant-time comparison). */
+    private byte[] calculateHmacSHA256Bytes(String data, String keySecret) throws Exception {
         javax.crypto.Mac sha256_HMAC = javax.crypto.Mac.getInstance("HmacSHA256");
-        javax.crypto.spec.SecretKeySpec secret_key = new javax.crypto.spec.SecretKeySpec(keySecret.getBytes("UTF-8"), "HmacSHA256");
+        javax.crypto.spec.SecretKeySpec secret_key =
+                new javax.crypto.spec.SecretKeySpec(keySecret.getBytes("UTF-8"), "HmacSHA256");
         sha256_HMAC.init(secret_key);
-        byte[] raw = sha256_HMAC.doFinal(data.getBytes("UTF-8"));
-        StringBuilder sb = new StringBuilder();
-        for (byte b : raw) {
-            sb.append(String.format("%02x", b));
+        return sha256_HMAC.doFinal(data.getBytes("UTF-8"));
+    }
+
+    /** Converts a lowercase hex string (as returned by Razorpay) to a byte array. */
+    private byte[] hexToBytes(String hex) {
+        if (hex == null || hex.length() % 2 != 0) return new byte[0];
+        byte[] result = new byte[hex.length() / 2];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = (byte) Integer.parseInt(hex.substring(2 * i, 2 * i + 2), 16);
         }
-        return sb.toString();
+        return result;
     }
 }

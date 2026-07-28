@@ -73,6 +73,15 @@ public class CheckoutServlet extends HttpServlet {
             Order order = razorpay.orders.create(orderRequest);
             razorpayOrderId = order.get("id");
 
+            // ✅ SECURITY: store order ID + expected amount in session so PaymentSuccessServlet
+            // can verify the incoming razorpay_order_id was actually created by this server
+            // for this session, preventing replay attacks with foreign order IDs.
+            HttpSession checkoutSession = request.getSession(false);
+            if (checkoutSession != null) {
+                checkoutSession.setAttribute("pendingRazorpayOrderId", razorpayOrderId);
+                checkoutSession.setAttribute("pendingAmountInPaise",   amountInPaise);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMsg", "Failed to initialize checkout with payment gateway: " + e.getMessage());

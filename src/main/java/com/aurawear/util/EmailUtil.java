@@ -45,7 +45,7 @@ public class EmailUtil {
     public static void sendOTP(String toEmail, String otp) throws Exception {
 
         System.out.println("[EmailUtil.sendOTP] Recipient  : '" + toEmail + "'");
-        System.out.println("[EmailUtil.sendOTP] OTP        : '" + otp + "'");
+        // ✅ SECURITY: do NOT log the OTP itself — it is a single-use authentication secret
         System.out.println("[EmailUtil.sendOTP] Sender     : '" + getFromEmail() + "'");
         System.out.println("[EmailUtil.sendOTP] Sending via Brevo HTTP API...");
 
