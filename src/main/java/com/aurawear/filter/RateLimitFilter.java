@@ -125,17 +125,26 @@ public class RateLimitFilter implements Filter {
         }
     }
 
+    /**
+     * Extracts the client IP address safely.
+     *
+     * <p>When behind a reverse proxy (e.g. Render / Railway edge proxy),
+     * the proxy appends the actual connecting client IP to the end of X-Forwarded-For.
+     * The first entry in X-Forwarded-For can be spoofed by an attacker to bypass
+     * rate limiting. Taking the last entry in X-Forwarded-For (or falling back to
+     * X-Real-IP / getRemoteAddr) ensures we use the trusted IP recorded by the proxy.
+     */
     private String getClientIp(HttpServletRequest request) {
         String xff = request.getHeader("X-Forwarded-For");
-        if (xff != null && !xff.isEmpty()) {
-            int commaIdx = xff.indexOf(',');
-            if (commaIdx != -1) {
-                return xff.substring(0, commaIdx).trim();
+        if (xff != null && !xff.trim().isEmpty()) {
+            String[] ips = xff.split(",");
+            String lastIp = ips[ips.length - 1].trim();
+            if (!lastIp.isEmpty()) {
+                return lastIp;
             }
-            return xff.trim();
         }
         String realIp = request.getHeader("X-Real-IP");
-        if (realIp != null && !realIp.isEmpty()) {
+        if (realIp != null && !realIp.trim().isEmpty()) {
             return realIp.trim();
         }
         return request.getRemoteAddr();
