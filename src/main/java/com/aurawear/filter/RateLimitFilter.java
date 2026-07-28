@@ -71,7 +71,7 @@ public class RateLimitFilter implements Filter {
             return;
         }
 
-        String clientIp = httpRequest.getRemoteAddr();
+        String clientIp = getClientIp(httpRequest);
         long now = System.currentTimeMillis();
 
         // Periodic cleanup of stale entries.
@@ -123,5 +123,21 @@ public class RateLimitFilter implements Filter {
             int count = removed;
             logger.fine(() -> "Cleaned up " + count + " stale rate-limit entries");
         }
+    }
+
+    private String getClientIp(HttpServletRequest request) {
+        String xff = request.getHeader("X-Forwarded-For");
+        if (xff != null && !xff.isEmpty()) {
+            int commaIdx = xff.indexOf(',');
+            if (commaIdx != -1) {
+                return xff.substring(0, commaIdx).trim();
+            }
+            return xff.trim();
+        }
+        String realIp = request.getHeader("X-Real-IP");
+        if (realIp != null && !realIp.isEmpty()) {
+            return realIp.trim();
+        }
+        return request.getRemoteAddr();
     }
 }
