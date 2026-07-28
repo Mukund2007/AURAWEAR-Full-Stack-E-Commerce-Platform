@@ -36,6 +36,13 @@ public class LoginServlet extends HttpServlet {
 		LoginDAO dao = new LoginDAO();
 
 		if (dao.validateUser(email, password)) {
+		    UserDAO userDAO = new UserDAO();
+		    User user = userDAO.getUserByEmail(email);
+
+		    if (user != null && !user.isVerified()) {
+		        response.sendRedirect(request.getContextPath() + "/home?loginError=unverified");
+		        return;
+		    }
 
 		    // Session fixation protection: invalidate old session
 		    HttpSession oldSession = request.getSession(false);
@@ -44,18 +51,13 @@ public class LoginServlet extends HttpServlet {
 		    }
 		    HttpSession session = request.getSession(true);
 
-		    UserDAO userDAO = new UserDAO();          // ✅ ADD THIS
-		    User user = userDAO.getUserByEmail(email); // ✅ FETCH USER
-
-		    session.setAttribute("user", user);        // ✅ STORE OBJECT
+		    session.setAttribute("user", user);
 		    session.setAttribute("loginSuccess", true);  // GA4 Event Flag
 
 		    response.sendRedirect(request.getContextPath() + "/home");
 		}
 		else{
-
 			response.sendRedirect(request.getContextPath() + "/home?loginError=true");
-
 		}
 
 	}

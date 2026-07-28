@@ -10,12 +10,14 @@ import com.aurawear.util.DBConnection;
 public class UserDAO {
 
     public boolean registerUser(User user) {
-        String sql = "INSERT INTO users(name,email,password) VALUES(?,?,?)";
+        String sql = "INSERT INTO users(name,email,password,verified) VALUES(?,?,?,1)";
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, user.getName());
             ps.setString(2, user.getEmail());
-            ps.setString(3, com.aurawear.util.PasswordUtil.hashPassword(user.getPassword()));
+            // ✅ The password field already contains a PBKDF2 hash —
+            // RegisterServlet hashes before storing in session; do NOT re-hash here.
+            ps.setString(3, user.getPassword());
             int rows = ps.executeUpdate();
             return rows > 0;
         } catch (Exception e) {
@@ -68,6 +70,7 @@ public class UserDAO {
                     );
                     user.setId(rs.getInt("id"));
                     user.setRole(rs.getString("role"));
+                    user.setVerified(rs.getBoolean("verified"));
                     return user;
                 }
             }

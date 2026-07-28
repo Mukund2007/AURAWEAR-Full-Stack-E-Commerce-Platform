@@ -32,15 +32,14 @@ public class MigratePasswords {
         String user = System.getenv("AURAWEAR_DB_USER");
         String password = System.getenv("AURAWEAR_DB_PASSWORD");
 
-        // Fallback for local development execution if env vars not set
-        if (url == null || url.isEmpty()) {
-            url = "jdbc:mysql://localhost:3306/aurawear";
-        }
-        if (user == null || user.isEmpty()) {
-            user = "root";
-        }
-        if (password == null || password.isEmpty()) {
-            password = "Root1234";
+        // ✅ SECURITY: never use a hardcoded fallback password.
+        // Set AURAWEAR_DB_URL, AURAWEAR_DB_USER, AURAWEAR_DB_PASSWORD as environment variables
+        // or in app-local.properties before running this utility.
+        if (url == null || url.isEmpty() || user == null || user.isEmpty()
+                || password == null || password.isEmpty()) {
+            System.err.println("ERROR: AURAWEAR_DB_URL, AURAWEAR_DB_USER, and AURAWEAR_DB_PASSWORD " +
+                               "must be set as environment variables before running this utility.");
+            return;
         }
 
         System.out.println("Connecting to database: " + url + " as user: " + user);

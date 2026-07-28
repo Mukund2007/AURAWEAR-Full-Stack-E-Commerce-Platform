@@ -30,7 +30,9 @@ public class RegisterServlet extends HttpServlet {
                 return;
             }
 
-            String otp = String.valueOf((int)(Math.random() * 900000) + 100000);
+            // ✅ SECURITY: use cryptographically secure random — Math.random() is predictable
+            java.security.SecureRandom sr = new java.security.SecureRandom();
+            String otp = String.format("%06d", sr.nextInt(1_000_000));
             session.setAttribute("otp", otp);
             session.setAttribute("otpCreatedAt", System.currentTimeMillis());
             session.removeAttribute("otpAttempts");
@@ -121,15 +123,18 @@ public class RegisterServlet extends HttpServlet {
 
         // ── STEP 4: OTP generation ───────────────────────────────────────────────
         System.out.println("[REGISTRATION] STEP 4: Generating OTP");
-        String otp = String.valueOf((int)(Math.random() * 900000) + 100000);
-        System.out.println("[REGISTRATION] OTP generated: '" + otp + "'");
+        // ✅ SECURITY: use cryptographically secure random — Math.random() is predictable
+        java.security.SecureRandom sr = new java.security.SecureRandom();
+        String otp = String.format("%06d", sr.nextInt(1_000_000));
+        // ✅ SECURITY: do NOT log the OTP — it is a single-use secret
 
         // ── STEP 5: Session storage ──────────────────────────────────────────────
         System.out.println("[REGISTRATION] STEP 5: Storing data in session");
         HttpSession session = request.getSession();
         session.setAttribute("pendingName",      name);
         session.setAttribute("pendingEmail",     normalizedEmail);
-        session.setAttribute("pendingPassword",  password);
+        // ✅ SECURITY: store the PBKDF2 hash, NOT the raw plaintext password
+        session.setAttribute("pendingPassword",  com.aurawear.util.PasswordUtil.hashPassword(password));
         session.setAttribute("pendingUsername",  username);
         session.setAttribute("pendingInterests", interests);
         session.setAttribute("otp",              otp);

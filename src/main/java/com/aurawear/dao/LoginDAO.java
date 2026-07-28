@@ -19,7 +19,17 @@ public class LoginDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     String storedHash = rs.getString("password");
-                    return com.aurawear.util.PasswordUtil.verifyPassword(password, storedHash);
+                    boolean verified = com.aurawear.util.PasswordUtil.verifyPassword(password, storedHash);
+                    if (verified && (storedHash == null || !storedHash.startsWith("v1$"))) {
+                        // Upgrade the hash format dynamically to v1 / 310,000 iterations
+                        String newHash = com.aurawear.util.PasswordUtil.hashPassword(password);
+                        try (PreparedStatement updatePs = con.prepareStatement("UPDATE users SET password=? WHERE email=?")) {
+                            updatePs.setString(1, newHash);
+                            updatePs.setString(2, email);
+                            updatePs.executeUpdate();
+                        }
+                    }
+                    return verified;
                 }
             }
 
