@@ -227,7 +227,10 @@ CREATE TABLE `wishlist` (
   `user_email` varchar(100) DEFAULT NULL,
   `product_name` varchar(100) DEFAULT NULL,
   `price` double DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `product_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_id` (`product_id`),
+  CONSTRAINT `wishlist_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

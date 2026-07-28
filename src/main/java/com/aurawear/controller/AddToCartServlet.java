@@ -30,19 +30,18 @@ public class AddToCartServlet extends HttpServlet {
         User user = (User) session.getAttribute("user");
         String email = user.getEmail();
 
-        String idParam    = request.getParameter("id");
-        String size       = request.getParameter("size");
-        String priceParam = request.getParameter("price");
+        String idParam = request.getParameter("id");
+        String size    = request.getParameter("size");
+        // ✅ SECURITY: never trust the client-supplied price; fetch authoritative price from DB
 
-        if (idParam == null || priceParam == null || size == null) {
+        if (idParam == null || size == null) {
             response.setStatus(400);
             return;
         }
 
         int productId = Integer.parseInt(idParam);
-        int price     = (int) Double.parseDouble(priceParam);
 
-        // ── Out-of-Stock guard ──
+        // ── Product lookup: stock guard + authoritative price ──
         ProductDAO productDAO = new ProductDAO();
         Product product = productDAO.getProductById(productId);
         if (product == null || !product.isInStock()) {
@@ -52,6 +51,9 @@ public class AddToCartServlet extends HttpServlet {
             out.print("{\"success\":false,\"message\":\"This item is out of stock\"}");
             return;
         }
+
+        // ✅ Use server-side price; client-supplied value is ignored
+        int price = (int) product.getPrice();
 
         CartDAO dao = new CartDAO();
         dao.addToCart(email, productId, size, price);
