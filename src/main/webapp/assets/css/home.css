@@ -77,9 +77,9 @@ img {
     font-family: var(--font-body);
     font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--premium-accent);
+    color: rgba(255, 255, 255, 0.85);
     margin-bottom: var(--stack-md);
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -113,22 +113,22 @@ img {
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    border-radius: var(--radius-pill);
+    border-radius: 0px;
     transition: all var(--transition-normal);
     cursor: pointer;
 }
 
 .btn-primary {
-    background-color: var(--premium-accent);
-    color: var(--primary-brand);
-    border: 1.5px solid var(--premium-accent);
+    background-color: #ffffff;
+    color: #000000;
+    border: 1.5px solid #ffffff;
     box-shadow: var(--shadow-soft);
 }
 
 .btn-primary:hover {
-    background-color: var(--premium-accent-light);
-    color: var(--primary-brand);
-    border-color: var(--premium-accent-light);
+    background-color: #e5e5e5;
+    color: #000000;
+    border-color: #e5e5e5;
     box-shadow: var(--shadow-medium);
     transform: translateY(-2px);
 }
@@ -311,9 +311,9 @@ img {
 }
 
 .badge-new {
-    background-color: var(--premium-accent);
-    color: var(--bg-color);
-    border-color: var(--premium-accent);
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #000000;
 }
 
 .badge-low-stock {
@@ -352,12 +352,12 @@ img {
 }
 
 .wishlist-btn:hover {
-    color: var(--premium-accent);
+    color: var(--primary-text);
     transform: scale(1.1);
 }
 
 .wishlist-btn.active {
-    color: var(--premium-accent);
+    color: var(--primary-text);
 }
 
 .wishlist-btn.active span {
@@ -390,8 +390,8 @@ img {
 }
 
 .add-to-bag-btn:hover {
-    background-color: var(--premium-accent);
-    color: var(--bg-color);
+    background-color: #000000;
+    color: #ffffff;
 }
 
 .add-to-bag-btn.disabled {
@@ -437,7 +437,7 @@ img {
     display: flex;
     align-items: center;
     gap: 4px;
-    color: var(--premium-accent);
+    color: var(--primary-text);
 }
 
 .product-rating span {
@@ -500,7 +500,7 @@ img {
     display: block;
     width: 3px;
     height: 3px;
-    background-color: var(--premium-accent);
+    background-color: #000000;
     border-radius: 50%;
     opacity: 0.5;
 }
@@ -510,7 +510,7 @@ img {
         display: block;
         width: 3px;
         height: 3px;
-        background-color: var(--premium-accent);
+        background-color: #000000;
         border-radius: 50%;
         opacity: 0.5;
     }
@@ -587,7 +587,7 @@ img {
 
 .footer-socials a:hover {
     opacity: 1;
-    color: var(--premium-accent);
+    color: #ffffff;
 }
 
 .footer-links-col {
@@ -604,7 +604,7 @@ img {
     text-transform: uppercase;
     opacity: 0.9;
     margin: 0;
-    color: var(--premium-accent);
+    color: #ffffff;
 }
 
 .footer-links-list {
@@ -626,7 +626,7 @@ img {
 
 .footer-links-list a:hover {
     opacity: 1;
-    color: var(--premium-accent);
+    color: #ffffff;
 }
 
 .footer-bottom-row {
