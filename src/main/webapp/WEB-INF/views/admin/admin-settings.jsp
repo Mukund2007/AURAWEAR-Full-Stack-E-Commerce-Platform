@@ -22,13 +22,13 @@
 
     <style>
         :root {
-            --bg-color: #F7F2EC;
+            --bg-color: #ffffff;
             --text-color: #000000;
-            --border-color: #D8D1CA;
+            --border-color: #e5e5e5;
             --border-color-solid: #000000;
             --accent-color: #000000;
-            --card-bg: #D9CDC2;
-            --input-bg: #D9CDC2;
+            --card-bg: #f5f5f5;
+            --input-bg: #f5f5f5;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -100,7 +100,7 @@
         }
         .page-subtitle {
             font-size: 12px;
-            color: #66635E;
+            color: #737373;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 4px;
@@ -131,7 +131,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #66635E;
+            color: #737373;
             margin-bottom: 8px;
         }
         .form-group input {
@@ -151,7 +151,7 @@
         .btn-save {
             width: 100%;
             background-color: var(--accent-color);
-            color: #F7F2EC;
+            color: #ffffff;
             border: none;
             padding: 16px;
             font-family: var(--font-body);
@@ -167,18 +167,18 @@
         }
         .alert-success {
             background-color: rgba(0, 255, 0, 0.08);
-            border-left: 3px solid #4cd137;
+            border-left: 3px solid #16a34a;
             padding: 14px 20px;
             font-size: 14px;
-            color: #5B7358;
+            color: #16a34a;
             margin-bottom: 24px;
         }
         .alert-error {
             background-color: rgba(255, 0, 0, 0.08);
-            border-left: 3px solid #e84118;
+            border-left: 3px solid #dc2626;
             padding: 14px 20px;
             font-size: 14px;
-            color: #8C3B3B;
+            color: #dc2626;
             margin-bottom: 24px;
         }
     </style>

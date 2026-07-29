@@ -24,13 +24,13 @@
 
     <style>
         :root {
-            --bg-color: #F7F2EC;
+            --bg-color: #ffffff;
             --text-color: #000000;
-            --border-color: #D8D1CA;
+            --border-color: #e5e5e5;
             --border-color-solid: #000000;
             --accent-color: #000000;
-            --card-bg: #D9CDC2;
-            --input-bg: #D9CDC2;
+            --card-bg: #f5f5f5;
+            --input-bg: #f5f5f5;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -105,7 +105,7 @@
         }
         .page-subtitle {
             font-size: 12px;
-            color: #66635E;
+            color: #737373;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 4px;
@@ -137,7 +137,7 @@
             font-weight: 700;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #66635E;
+            color: #737373;
             margin-bottom: 12px;
         }
         .metric-value {
@@ -184,7 +184,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #66635E;
+            color: #737373;
         }
         .admin-table tbody tr:hover {
             background-color: rgba(28, 46, 74, 0.05);
@@ -200,32 +200,32 @@
         }
         .status-paid {
             background-color: rgba(0, 255, 0, 0.08);
-            color: #5B7358;
+            color: #16a34a;
             border: 1px solid rgba(0, 255, 0, 0.2);
         }
         .status-shipped {
             background-color: rgba(0, 150, 255, 0.08);
-            color: #465F7D;
+            color: #525252;
             border: 1px solid rgba(0, 150, 255, 0.2);
         }
         .status-delivered {
             background-color: rgba(76, 209, 55, 0.15);
-            color: #5B7358;
+            color: #16a34a;
             border: 1px solid rgba(76, 209, 55, 0.3);
         }
         .status-cod_pending, .status-pending, .status-placed {
             background-color: rgba(255, 165, 0, 0.08);
-            color: #B89A63;
+            color: #a3a3a3;
             border: 1px solid rgba(255, 165, 0, 0.2);
         }
         .status-cod_confirmed {
             background-color: rgba(0, 150, 255, 0.08);
-            color: #465F7D;
+            color: #525252;
             border: 1px solid rgba(0, 150, 255, 0.2);
         }
         .status-canceled {
             background-color: rgba(255, 0, 0, 0.08);
-            color: #8C3B3B;
+            color: #dc2626;
             border: 1px solid rgba(255, 0, 0, 0.2);
         }
     </style>
@@ -288,7 +288,7 @@
                 <c:choose>
                     <c:when test="${empty recentOrders}">
                         <tr>
-                            <td colspan="5" style="text-align: center; color: #66635E;">No orders found in the database.</td>
+                            <td colspan="5" style="text-align: center; color: #737373;">No orders found in the database.</td>
                         </tr>
                     </c:when>
                     <c:otherwise>

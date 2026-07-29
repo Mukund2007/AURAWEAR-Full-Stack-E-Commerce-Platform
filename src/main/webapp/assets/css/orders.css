@@ -10,7 +10,7 @@
     --orders-text: var(--primary-text);
     --orders-text-muted: var(--secondary-text);
     --orders-outline: var(--border-color);
-    --orders-outline-light: rgba(226, 216, 200, 0.3);
+    --orders-outline-light: rgba(229, 229, 229, 0.3);
     --orders-surface-low: var(--surface-color);
     --orders-surface-lowest: var(--bg-color);
     --orders-primary: var(--primary-brand);

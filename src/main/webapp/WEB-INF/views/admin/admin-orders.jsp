@@ -23,13 +23,13 @@
 
     <style>
         :root {
-            --bg-color: #F7F2EC;
+            --bg-color: #ffffff;
             --text-color: #000000;
-            --border-color: #D8D1CA;
+            --border-color: #e5e5e5;
             --border-color-solid: #000000;
             --accent-color: #000000;
-            --card-bg: #D9CDC2;
-            --input-bg: #D9CDC2;
+            --card-bg: #f5f5f5;
+            --input-bg: #f5f5f5;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -101,7 +101,7 @@
         }
         .page-subtitle {
             font-size: 12px;
-            color: #66635E;
+            color: #737373;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 4px;
@@ -129,7 +129,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #66635E;
+            color: #737373;
         }
         .admin-table tbody tr:hover {
             background-color: rgba(28, 46, 74, 0.05);
@@ -141,7 +141,7 @@
         .order-item-detail {
             font-size: 13px;
             margin-bottom: 6px;
-            color: #D8D1CA;
+            color: #e5e5e5;
             border-bottom: 1px dashed rgba(237, 228, 221, 0.08);
             padding-bottom: 6px;
         }
@@ -151,7 +151,7 @@
             padding-bottom: 0;
         }
         .item-qty {
-            color: #66635E;
+            color: #737373;
             margin-left: 5px;
         }
         .item-size {
@@ -165,7 +165,7 @@
         .shipping-cell {
             font-size: 12px;
             line-height: 1.6;
-            color: #D8D1CA;
+            color: #e5e5e5;
         }
         .shipping-cell .ship-name {
             font-weight: 700;
@@ -200,10 +200,10 @@
         }
         .alert-success {
             background-color: rgba(0, 255, 0, 0.08);
-            border-left: 3px solid #4cd137;
+            border-left: 3px solid #16a34a;
             padding: 14px 20px;
             font-size: 14px;
-            color: #5B7358;
+            color: #16a34a;
             margin-bottom: 24px;
         }
     </style>
@@ -253,7 +253,7 @@
                 <c:choose>
                     <c:when test="${empty orders}">
                         <tr>
-                            <td colspan="7" style="text-align: center; color: #66635E;">No orders placed yet.</td>
+                            <td colspan="7" style="text-align: center; color: #737373;">No orders placed yet.</td>
                         </tr>
                     </c:when>
                     <c:otherwise>
@@ -287,7 +287,7 @@
                                             </div>
                                         </c:when>
                                         <c:otherwise>
-                                            <span style="color: #555;">—</span>
+                                            <span style="color: #737373;">—</span>
                                         </c:otherwise>
                                     </c:choose>
                                 </td>

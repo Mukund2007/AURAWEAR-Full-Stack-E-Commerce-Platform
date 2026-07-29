@@ -22,28 +22,28 @@
           theme: {
             extend: {
               "colors": {
-                      "surface": "#f5f2ee",             /* Warm Stone Sand */
-                      "background": "#faf8f5",          /* Warm Linen / Ivory */
-                      "primary": "#000000",             /* Rich Black */
-                      "secondary": "#222222",           /* Off-Black */
-                      "accent": "#b89a63",              /* Muted Champagne Gold */
-                      "accent-light": "#e5d7ba",        /* Pale Linen Gold */
+                      "surface": "#f5f5f5",             /* Neutral 50 */
+                      "background": "#ffffff",          /* Pure White */
+                      "primary": "#000000",             /* Pure Black */
+                      "secondary": "#262626",           /* Neutral 800 */
+                      "accent": "#000000",              /* Black — no separate accent */
+                      "accent-light": "#404040",        /* Neutral 700 */
                       "on-surface": "#000000",          /* Primary Text */
                       "on-background": "#000000",
-                      "on-primary": "#faf8f5",
-                      "on-secondary": "#faf8f5",
-                      "outline": "#e2d8c8",             /* Warm Border */
-                      "outline-variant": "#e2d8c8",
-                      "error": "#8c3b3b",               /* Deep Crimson Burgundy */
-                      "success": "#5b7358",             /* Refined Sage Green */
-                      "surface-container-low": "#f5f2ee",
-                      "surface-container-high": "#e8ddd0",
-                      "surface-container-highest": "#d9cdc2"
+                      "on-primary": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "outline": "#e5e5e5",             /* Neutral 200 */
+                      "outline-variant": "#e5e5e5",
+                      "error": "#dc2626",               /* Red 600 */
+                      "success": "#16a34a",             /* Green 600 */
+                      "surface-container-low": "#f5f5f5",
+                      "surface-container-high": "#e5e5e5",
+                      "surface-container-highest": "#d4d4d4"
               },
               "borderRadius": {
-                      "DEFAULT": "4px",
-                      "lg": "4px",
-                      "xl": "4px",
+                      "DEFAULT": "0px",
+                      "lg": "0px",
+                      "xl": "0px",
                       "full": "999px"
               },
               "spacing": {

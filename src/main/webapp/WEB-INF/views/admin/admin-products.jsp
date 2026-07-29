@@ -24,13 +24,13 @@
 
     <style>
         :root {
-            --bg-color: #F7F2EC;
+            --bg-color: #ffffff;
             --text-color: #000000;
-            --border-color: #D8D1CA;
+            --border-color: #e5e5e5;
             --border-color-solid: #000000;
             --accent-color: #000000;
-            --card-bg: #D9CDC2;
-            --input-bg: #D9CDC2;
+            --card-bg: #f5f5f5;
+            --input-bg: #f5f5f5;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -105,7 +105,7 @@
         }
         .page-subtitle {
             font-size: 12px;
-            color: #66635E;
+            color: #737373;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 4px;
@@ -134,7 +134,7 @@
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            color: #66635E;
+            color: #737373;
             margin-bottom: 6px;
         }
         .form-group input, .form-group select {
@@ -171,7 +171,7 @@
         .btn-accent {
             background-color: var(--accent-color);
             border-color: var(--accent-color);
-            color: #F7F2EC;
+            color: #ffffff;
         }
         .btn-accent:hover {
             background-color: transparent;
@@ -195,7 +195,7 @@
         }
         .btn-delete {
             background-color: transparent;
-            color: #8C3B3B;
+            color: #dc2626;
             border: 1px solid rgba(255, 77, 77, 0.3);
             padding: 6px 12px;
             font-size: 11px;
@@ -205,7 +205,7 @@
             transition: all 0.25s;
         }
         .btn-delete:hover {
-            border-color: #8C3B3B;
+            border-color: #dc2626;
             background-color: rgba(255, 77, 77, 0.1);
         }
         /* Tables */
@@ -231,7 +231,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #66635E;
+            color: #737373;
         }
         .admin-table tbody tr:hover {
             background-color: rgba(28, 46, 74, 0.05);
@@ -264,7 +264,7 @@
         .modal-close {
             position: absolute;
             top: 20px; right: 20px;
-            color: #66635E;
+            color: #737373;
             font-size: 24px;
             cursor: pointer;
             background: none;
@@ -275,10 +275,10 @@
         }
         .alert-success {
             background-color: rgba(0, 255, 0, 0.08);
-            border-left: 3px solid #4cd137;
+            border-left: 3px solid #16a34a;
             padding: 14px 20px;
             font-size: 14px;
-            color: #5B7358;
+            color: #16a34a;
             margin-bottom: 24px;
         }
     </style>
@@ -423,13 +423,13 @@
                         <td>
                             <c:choose>
                                 <c:when test="${prod.stockQuantity > 5}">
-                                    <span style="color: #5B7358;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> In Stock (${prod.stockQuantity})</span>
+                                    <span style="color: #16a34a;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> In Stock (${prod.stockQuantity})</span>
                                 </c:when>
                                 <c:when test="${prod.stockQuantity > 0}">
-                                    <span style="color: #B89A63;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Low Stock (${prod.stockQuantity})</span>
+                                    <span style="color: #a3a3a3;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Low Stock (${prod.stockQuantity})</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <span style="color: #8C3B3B;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Out of Stock</span>
+                                    <span style="color: #dc2626;"><i class="fa-solid fa-circle" style="font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Out of Stock</span>
                                 </c:otherwise>
                             </c:choose>
                         </td>

@@ -22,12 +22,12 @@
 
     <style>
         :root {
-            --bg-color: #F7F2EC;
+            --bg-color: #ffffff;
             --text-color: #000000;
-            --border-color: #D8D1CA;
+            --border-color: #e5e5e5;
             --border-color-solid: #000000;
             --accent-color: #000000;
-            --input-bg: #D9CDC2;
+            --input-bg: #f5f5f5;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -70,7 +70,7 @@
         }
         .subtitle {
             font-size: 11px;
-            color: #66635E;
+            color: #737373;
             letter-spacing: 3px;
             text-transform: uppercase;
             text-align: center;
@@ -85,7 +85,7 @@
             font-weight: 700;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #66635E;
+            color: #737373;
             margin-bottom: 8px;
         }
         .form-group input {
@@ -105,7 +105,7 @@
         .btn-submit {
             width: 100%;
             background-color: var(--accent-color);
-            color: #F7F2EC;
+            color: #ffffff;
             border: none;
             padding: 16px;
             font-family: var(--font-body);
@@ -125,7 +125,7 @@
             border-left: 3px solid var(--accent-color);
             padding: 12px;
             font-size: 13px;
-            color: #8C3B3B;
+            color: #dc2626;
             margin-bottom: 24px;
         }
         .back-to-store {
@@ -135,7 +135,7 @@
             font-size: 11px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: #66635E;
+            color: #737373;
             text-decoration: none;
             transition: color 0.25s;
         }
