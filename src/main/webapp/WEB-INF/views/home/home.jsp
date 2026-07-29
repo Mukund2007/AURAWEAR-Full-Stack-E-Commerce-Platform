@@ -135,7 +135,7 @@
     <main class="flex-grow">
         <!-- Hero Section -->
         <section class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden" style="background: linear-gradient(135deg, var(--primary-brand) 0%, var(--secondary-brand) 100%);">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105 hero-bg-video opacity-40">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105 hero-bg-video opacity-50" style="filter: grayscale(100%) contrast(115%) brightness(0.85);">
                 <source src="${ctx}/assets/images/hero-main.webm?v=1.0.0" type="video/webm">
             </video>
             <div class="absolute inset-0 z-10" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%);"></div>
@@ -207,19 +207,19 @@
         <!-- Category Grid -->
         <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Men">
+                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-none shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Men">
                     <img alt="Men's Collection" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-men.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
                     <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Men</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Women">
+                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-none shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Women">
                     <img alt="Women's Collection" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-women.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
                     <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Women</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Footwear">
+                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-none shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Footwear">
                     <img alt="Footwear" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-footwear.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
                     <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Footwear</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Accessories">
+                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-none shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Accessories">
                     <img alt="Accessories" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-accessories.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
                     <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Accessories</span></div>
                 </a>
