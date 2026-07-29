@@ -40,7 +40,7 @@
             <div class="modal-field">
                 <label>Password</label>
                 <input type="password" name="password" placeholder="••••••••" required autocomplete="current-password">
-                <a href="#" class="modal-forgot">Forgot password?</a>
+                <a href="javascript:void(0)" onclick="alert('Please contact support@aurawear.com for password reset assistance.')" class="modal-forgot">Forgot password?</a>
             </div>
             <button type="submit" class="modal-signin-btn">Sign In</button>
         </form>

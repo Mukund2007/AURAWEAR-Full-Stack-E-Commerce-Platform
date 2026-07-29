@@ -32,22 +32,23 @@
         theme: {
           extend: {
             "colors": {
-                    "surface": "#D9CDC2",             /* Warm Stone */
-                    "background": "#F7F2EC",          /* Warm Ivory */
-                    "primary": "#000000",             /* Deep Navy */
-                    "secondary": "#465F7D",           /* Muted Steel Blue */
-                    "accent": "#B89A63",              /* Champagne Gold */
+                    "surface": "#f5f2ee",             /* Warm Stone Sand */
+                    "background": "#faf8f5",          /* Warm Linen / Ivory */
+                    "primary": "#000000",             /* Rich Black */
+                    "secondary": "#222222",           /* Off-Black */
+                    "accent": "#b89a63",              /* Muted Champagne Gold */
+                    "accent-light": "#e5d7ba",        /* Pale Linen Gold */
                     "on-surface": "#000000",          /* Primary Text */
                     "on-background": "#000000",
-                    "on-primary": "#F7F2EC",
-                    "on-secondary": "#F7F2EC",
-                    "outline": "#D8D1CA",             /* Border Color */
-                    "outline-variant": "#D8D1CA",
-                    "error": "#8C3B3B",               /* Burgundy / Wishlist */
-                    "success": "#5B7358",             /* Success */
-                    "surface-container-low": "#D9CDC2",
-                    "surface-container-high": "#C7B9AC",
-                    "surface-container-highest": "#B5A799"
+                    "on-primary": "#faf8f5",
+                    "on-secondary": "#faf8f5",
+                    "outline": "#e2d8c8",             /* Warm Border */
+                    "outline-variant": "#e2d8c8",
+                    "error": "#8c3b3b",               /* Deep Crimson Burgundy */
+                    "success": "#5b7358",             /* Refined Sage Green */
+                    "surface-container-low": "#f5f2ee",
+                    "surface-container-high": "#e8ddd0",
+                    "surface-container-highest": "#d9cdc2"
             },
             "borderRadius": {
                     "DEFAULT": "8px",

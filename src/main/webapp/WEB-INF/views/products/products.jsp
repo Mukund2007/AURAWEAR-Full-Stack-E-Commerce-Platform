@@ -368,7 +368,8 @@
             .then(count => {
                 const el = document.getElementById("cart-count");
                 if (el) el.innerText = count;
-            });
+                document.querySelectorAll(".cart-badge").forEach(b => b.innerText = count);
+            }).catch(() => {});
     }
 
     /* ── TOAST ──────────────────────────────────────────── */

@@ -368,7 +368,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
 .custom-cursor-follower.hovered {
     width: 28px;
     height: 28px;
-    background-color: rgba(28, 46, 74, 0.15);
+    background-color: rgba(0, 0, 0, 0.15);
     border: 1px solid var(--primary-brand);
 }
 
@@ -567,7 +567,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
     position: fixed;
     width: 20px;
     height: 20px;
-    background: radial-gradient(circle, rgba(28, 46, 74, 0.4) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.4) 0%, transparent 70%);
     border-radius: 50%;
     pointer-events: none;
     z-index: 99999;
@@ -658,7 +658,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, div, section, label, input, select, textarea
 }
 .blueprint-line:hover::after {
     background: var(--primary-brand);
-    box-shadow: 0 0 8px rgba(28, 46, 74, 0.4);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
 
 /* ── OVERLAY MENU LOGO ────────────────────────────────────────── */

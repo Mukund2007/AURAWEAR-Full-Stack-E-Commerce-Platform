@@ -416,7 +416,7 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
-                        'X-CSRF-Token': '${_csrf}'
+                        'X-CSRF-Token': window._csrf
                     },
                     body: 'orderId=' + encodeURIComponent(orderId) + '&action=' + encodeURIComponent(action)
                 })

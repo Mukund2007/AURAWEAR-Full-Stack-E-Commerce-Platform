@@ -441,7 +441,11 @@
     function updateCartCount() {
         fetch(ctx + "/cart-count", { credentials: "include" })
             .then(r => r.text())
-            .then(c => { const el = document.getElementById("cart-count"); if (el) el.innerText = c; })
+            .then(c => { 
+                const el = document.getElementById("cart-count"); 
+                if (el) el.innerText = c; 
+                document.querySelectorAll(".cart-badge").forEach(b => b.innerText = c);
+            })
             .catch(() => {});
     }
 

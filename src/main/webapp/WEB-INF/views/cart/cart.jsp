@@ -155,7 +155,7 @@
                     <label for="promo-input">Promo Code</label>
                     <div class="coupon-input-group">
                         <input type="text" id="promo-input" placeholder="Promo code">
-                        <button type="button" class="apply-coupon-btn">Apply</button>
+                        <button type="button" class="apply-coupon-btn" onclick="applyCoupon()">Apply</button>
                     </div>
                 </div>
 
@@ -396,7 +396,18 @@
         .then(count => {
             const el = document.getElementById("cart-count");
             if (el) el.innerText = count;
-        });
+            document.querySelectorAll(".cart-badge").forEach(b => b.innerText = count);
+        }).catch(() => {});
+    }
+
+    function applyCoupon() {
+        const input = document.getElementById("promo-input");
+        const val = input ? input.value.trim() : "";
+        if (!val) {
+            showToast("Please enter a promo code.");
+            return;
+        }
+        showToast("Invalid or expired promo code: " + val);
     }
 
     function showToast(msg) {

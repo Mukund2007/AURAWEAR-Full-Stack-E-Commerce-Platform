@@ -10,7 +10,7 @@
     --orders-text: var(--primary-text);
     --orders-text-muted: var(--secondary-text);
     --orders-outline: var(--border-color);
-    --orders-outline-light: rgba(216, 209, 202, 0.3);
+    --orders-outline-light: rgba(226, 216, 200, 0.3);
     --orders-surface-low: var(--surface-color);
     --orders-surface-lowest: var(--bg-color);
     --orders-primary: var(--primary-brand);
@@ -314,9 +314,9 @@
 
 /* Status state variants */
 .order-badge.shipped {
-    background-color: rgba(70, 95, 125, 0.1);
+    background-color: rgba(34, 34, 34, 0.08);
     color: var(--secondary-brand);
-    border: 1px solid rgba(70, 95, 125, 0.2);
+    border: 1px solid rgba(34, 34, 34, 0.15);
 }
 .order-badge.shipped .badge-dot {
     background-color: var(--secondary-brand);

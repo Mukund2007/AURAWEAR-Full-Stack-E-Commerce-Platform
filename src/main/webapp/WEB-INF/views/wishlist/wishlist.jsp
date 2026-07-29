@@ -244,7 +244,7 @@
             updateCartCount();
             
             if (typeof gtag === 'function') {
-                const pName = btn.closest(".wl-card")?.querySelector(".wl-name")?.innerText || 'Product';
+                const pName = btn.closest(".wishlist-card")?.querySelector(".wl-name")?.innerText || 'Product';
                 gtag('event', 'add_to_cart', {
                     currency: 'INR',
                     value: parseFloat(price),
@@ -277,7 +277,8 @@
         .then(count => {
             const el = document.getElementById("cart-count");
             if (el) el.innerText = count;
-        });
+            document.querySelectorAll(".cart-badge").forEach(b => b.innerText = count);
+        }).catch(() => {});
     }
 
     function refreshCount() {
