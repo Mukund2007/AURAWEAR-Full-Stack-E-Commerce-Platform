@@ -14,8 +14,8 @@
     <title><c:out value="${product.name}" /> — AuraWear</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
-    <link rel="stylesheet" href="${ctx}/assets/css/product-details.css?v=200">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=300">
+    <link rel="stylesheet" href="${ctx}/assets/css/product-details.css?v=300">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>

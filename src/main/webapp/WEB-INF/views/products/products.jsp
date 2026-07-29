@@ -22,8 +22,8 @@
     </title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
-    <link class="products-style" rel="stylesheet" href="${ctx}/assets/css/products.css?v=200">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=300">
+    <link class="products-style" rel="stylesheet" href="${ctx}/assets/css/products.css?v=300">
 
 </head>
 <body class="products-page">

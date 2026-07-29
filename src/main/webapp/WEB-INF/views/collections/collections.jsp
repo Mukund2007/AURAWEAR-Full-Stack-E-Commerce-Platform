@@ -13,8 +13,8 @@
     <meta name="description" content="Explore AuraWear's curated fashion drops. Premium technical garments engineered for longevity, versatility, and the modern architectural form.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=200">
-    <link rel="stylesheet" href="${ctx}/assets/css/collections.css?v=200">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=300">
+    <link rel="stylesheet" href="${ctx}/assets/css/collections.css?v=300">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 </head>
 <body>
