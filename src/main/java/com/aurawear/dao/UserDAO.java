@@ -57,6 +57,18 @@ public class UserDAO {
         return false;
     }
 
+    public boolean setUserVerified(String email) {
+        String sql = "UPDATE users SET verified=1 WHERE email=?";
+        try (Connection con = DBConnection.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, email);
+            return ps.executeUpdate() > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public User getUserByEmail(String email) {
         try (Connection con = DBConnection.getConnection();
              PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE email=?")) {

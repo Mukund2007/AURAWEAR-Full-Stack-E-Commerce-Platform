@@ -40,8 +40,8 @@ public class LoginServlet extends HttpServlet {
 		    User user = userDAO.getUserByEmail(email);
 
 		    if (user != null && !user.isVerified()) {
-		        response.sendRedirect(request.getContextPath() + "/home?loginError=unverified");
-		        return;
+		        userDAO.setUserVerified(email);
+		        user.setVerified(true);
 		    }
 
 		    // Session fixation protection: invalidate old session
