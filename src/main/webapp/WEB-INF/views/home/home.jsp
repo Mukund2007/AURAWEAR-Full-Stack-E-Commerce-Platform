@@ -16,10 +16,75 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#f5f2ee",             /* Warm Stone Sand */
+                      "background": "#faf8f5",          /* Warm Linen / Ivory */
+                      "primary": "#000000",             /* Rich Black */
+                      "secondary": "#222222",           /* Off-Black */
+                      "accent": "#b89a63",              /* Muted Champagne Gold */
+                      "accent-light": "#e5d7ba",        /* Pale Linen Gold */
+                      "on-surface": "#000000",          /* Primary Text */
+                      "on-background": "#000000",
+                      "on-primary": "#faf8f5",
+                      "on-secondary": "#faf8f5",
+                      "outline": "#e2d8c8",             /* Warm Border */
+                      "outline-variant": "#e2d8c8",
+                      "error": "#8c3b3b",               /* Deep Crimson Burgundy */
+                      "success": "#5b7358",             /* Refined Sage Green */
+                      "surface-container-low": "#f5f2ee",
+                      "surface-container-high": "#e8ddd0",
+                      "surface-container-highest": "#d9cdc2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "4px",
+                      "lg": "4px",
+                      "xl": "4px",
+                      "full": "999px"
+              },
+              "spacing": {
+                      "margin-desktop": "80px",
+                      "container-max": "1440px",
+                      "gutter": "24px",
+                      "stack-lg": "32px",
+                      "section-gap-mobile": "64px",
+                      "section-gap": "160px",
+                      "margin-mobile": "20px",
+                      "stack-sm": "8px",
+                      "stack-md": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": ["DM Sans", "sans-serif"],
+                      "headline-sm": ["DM Sans", "sans-serif"],
+                      "display-lg-mobile": ["DM Sans", "sans-serif"],
+                      "label-md": ["DM Sans", "sans-serif"],
+                      "label-caps": ["DM Sans", "sans-serif"],
+                      "display-lg": ["DM Sans", "sans-serif"],
+                      "body-md": ["DM Sans", "sans-serif"],
+                      "body-lg": ["DM Sans", "sans-serif"],
+              },
+              "fontSize": {
+                      "headline-md": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                      "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                      "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
+                      "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                      "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
     <style>
         body {
-            background-color: var(--bg-color);
-            color: var(--primary-text);
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }

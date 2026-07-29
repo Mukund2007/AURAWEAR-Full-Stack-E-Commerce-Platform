@@ -20,26 +20,6 @@ body {
     overflow-x: hidden;
 }
 
-/* ── DESIGN TOKEN HELPER UTILITIES (replaces Tailwind CDN) ── */
-.bg-background { background-color: var(--bg-color); }
-.bg-surface-container-low { background-color: var(--surface-color); }
-.bg-surface-container-high { background-color: var(--surface-color); }
-.bg-surface-container-highest { background-color: var(--surface-color); }
-.bg-surface-bright { background-color: var(--surface-color); }
-.bg-primary { background-color: var(--primary-brand); }
-.bg-error { background-color: var(--error-color); }
-.bg-accent { background-color: var(--premium-accent); }
-.text-primary { color: var(--primary-text); }
-.text-accent { color: var(--premium-accent); }
-.text-on-surface-variant { color: var(--secondary-text); }
-.text-on-primary { color: var(--bg-color); }
-.text-on-error { color: var(--bg-color); }
-.border-outline-variant { border-color: var(--border-color); }
-.border-accent { border-color: var(--premium-accent); }
-.hover\:bg-accent-light:hover { background-color: var(--premium-accent-light); }
-.hover\:text-accent:hover { color: var(--premium-accent); }
-
-
 a {
     text-decoration: none;
     color: var(--color-on-dark);
