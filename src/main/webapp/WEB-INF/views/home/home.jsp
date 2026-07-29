@@ -134,23 +134,23 @@
 
     <main class="flex-grow">
         <!-- Hero Section -->
-        <section class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-white">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105 hero-bg-video opacity-25" style="filter: grayscale(100%) contrast(110%) brightness(1.0);">
+        <section class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-black">
+            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105 hero-bg-video">
                 <source src="${ctx}/assets/images/hero-main.webm?v=1.0.0" type="video/webm">
             </video>
             <div class="relative z-20 text-center px-margin-mobile flex flex-col items-center select-none">
-                <span class="font-sans text-xs font-semibold tracking-[0.25em] uppercase mb-6 text-neutral-600">Premium Streetwear</span>
-                <h1 class="text-black font-light tracking-[-0.05em] mb-8 leading-[1.05] text-center" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 8vw, 88px); font-weight: 400;">
+                <span class="font-sans text-xs font-semibold tracking-[0.25em] uppercase mb-6 text-white/90" style="text-shadow: 0 2px 10px rgba(0,0,0,0.6);">Premium Streetwear</span>
+                <h1 class="text-white font-light tracking-[-0.05em] mb-8 leading-[1.05] text-center" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 8vw, 88px); font-weight: 400; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
                     AURA
                 </h1>
-                <p class="font-sans text-neutral-800 text-xs sm:text-sm md:text-base tracking-[0.45em] uppercase mb-12 font-medium">
+                <p class="font-sans text-white/90 text-xs sm:text-sm md:text-base tracking-[0.45em] uppercase mb-12 font-light" style="text-shadow: 0 2px 10px rgba(0,0,0,0.6);">
                     AUTUMN / WINTER 2026
                 </p>
                 <div class="flex gap-4 flex-wrap justify-center">
-                    <a class="inline-flex items-center justify-center px-10 py-4 border border-black text-white font-sans text-xs md:text-sm tracking-[0.15em] uppercase rounded-none bg-black hover:bg-neutral-800 transition-all duration-300 shadow-md hover:-translate-y-0.5" href="${ctx}/products">
+                    <a class="inline-flex items-center justify-center px-10 py-4 border border-white text-black font-sans text-xs md:text-sm tracking-[0.15em] uppercase rounded-none bg-white hover:bg-neutral-200 transition-all duration-300 shadow-md hover:-translate-y-0.5" href="${ctx}/products">
                         DISCOVER COLLECTION
                     </a>
-                    <a class="inline-flex items-center justify-center px-10 py-4 border border-black text-black font-sans text-xs md:text-sm tracking-[0.15em] uppercase rounded-none bg-transparent hover:bg-black/5 transition-all duration-300" href="${ctx}/collections">
+                    <a class="inline-flex items-center justify-center px-10 py-4 border border-white text-white font-sans text-xs md:text-sm tracking-[0.15em] uppercase rounded-none bg-transparent hover:bg-white/20 backdrop-blur-sm transition-all duration-300" href="${ctx}/collections">
                         VIEW LOOKBOOK
                     </a>
                 </div>
