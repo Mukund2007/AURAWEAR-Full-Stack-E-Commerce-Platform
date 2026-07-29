@@ -314,9 +314,9 @@
 
 /* Status state variants */
 .order-badge.shipped {
-    background-color: rgba(34, 34, 34, 0.08);
+    background-color: rgba(38, 38, 38, 0.08);
     color: var(--secondary-brand);
-    border: 1px solid rgba(34, 34, 34, 0.15);
+    border: 1px solid rgba(38, 38, 38, 0.15);
 }
 .order-badge.shipped .badge-dot {
     background-color: var(--secondary-brand);
@@ -339,9 +339,9 @@
 
 .order-badge.paid,
 .order-badge.delivered {
-    background-color: rgba(91, 115, 88, 0.1);
+    background-color: rgba(22, 163, 74, 0.1);
     color: var(--success-color);
-    border: 1px solid rgba(91, 115, 88, 0.2);
+    border: 1px solid rgba(22, 163, 74, 0.2);
 }
 .order-badge.paid .badge-dot,
 .order-badge.delivered .badge-dot {
@@ -350,9 +350,9 @@
 
 .order-badge.cancelled,
 .order-badge.returned {
-    background-color: rgba(140, 59, 59, 0.1);
+    background-color: rgba(220, 38, 38, 0.1);
     color: var(--error-color);
-    border: 1px solid rgba(140, 59, 59, 0.2);
+    border: 1px solid rgba(220, 38, 38, 0.2);
 }
 .order-badge.cancelled .badge-dot,
 .order-badge.returned .badge-dot {
@@ -464,7 +464,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(28, 27, 27, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     display: flex;
     align-items: center;
     justify-content: center;

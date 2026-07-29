@@ -121,7 +121,7 @@
 }
 
 .modal-error {
-    background: rgba(140, 59, 59, 0.1);
+    background: rgba(220, 38, 38, 0.1);
     border: 1px solid var(--error-color);
     color: var(--error-color);
     font-size: 12px;
