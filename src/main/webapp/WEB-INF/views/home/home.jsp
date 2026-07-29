@@ -281,9 +281,9 @@
                                         <p class="font-label-md text-on-surface-variant">${p.category}</p>
                                     </div>
                                     <div class="text-right">
-                                        <p class="font-label-md text-primary font-medium">₹<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></p>
+                                        <p class="font-label-md text-primary font-medium">&#8377;<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></p>
                                         <c:if test="${p.discount > 0}">
-                                            <p class="text-on-surface-variant line-through text-[11px] mt-0.5">₹<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></p>
+                                            <p class="text-on-surface-variant line-through text-[11px] mt-0.5">&#8377;<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></p>
                                             <span class="inline-block bg-error/10 text-error text-[10px] font-mono tracking-widest px-1.5 py-0.5 rounded mt-0.5 font-bold">${p.discount}% OFF</span>
                                         </c:if>
                                     </div>

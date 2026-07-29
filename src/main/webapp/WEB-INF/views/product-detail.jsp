@@ -73,9 +73,9 @@
 
                 <!-- PRICE ROW -->
                 <div class="price-row">
-                    <span class="price">₹<fmt:formatNumber value="${product.price}" maxFractionDigits="0"/></span>
+                    <span class="price">&#8377;<fmt:formatNumber value="${product.price}" maxFractionDigits="0"/></span>
                     <c:if test="${product.discount > 0}">
-                        <span class="original-price">₹<fmt:formatNumber value="${product.originalPrice}" maxFractionDigits="0"/></span>
+                        <span class="original-price">&#8377;<fmt:formatNumber value="${product.originalPrice}" maxFractionDigits="0"/></span>
                         <span class="discount-badge">${product.discount}% OFF</span>
                     </c:if>
                 </div>

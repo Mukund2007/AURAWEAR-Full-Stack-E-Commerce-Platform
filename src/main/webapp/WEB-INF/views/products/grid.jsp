@@ -1,5 +1,6 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
-<%-- Cache bust: v200 --%>
+<%-- Cache bust: v300 --%>
 <%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
@@ -53,12 +54,12 @@
                 <div class="product-info">
                     <span class="product-category-tag">${p.category}</span>
                     <h3 class="product-title-text">${p.name}</h3>
-                    <div class="product-meta-specs">${p.size} • ${p.color}</div>
+                    <div class="product-meta-specs">${p.size} &bull; ${p.color}</div>
                     <div class="price-row" style="display: flex; align-items: center; gap: 8px; margin-top: 4px;">
-                        <div class="price-tag" style="font-size: 14px; font-weight: 500; color: var(--text-color);">₹<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></div>
+                        <div class="price-tag" style="font-size: 14px; font-weight: 500; color: var(--text-color);">&#8377;<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></div>
                         <c:if test="${p.discount > 0}">
-                            <span class="original-price" style="font-size: 12px; color: var(--text-muted); text-decoration: line-through; font-family: var(--font-body);">₹<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></span>
-                            <span class="discount-badge" style="display: inline-block; background-color: rgba(140, 59, 59, 0.08); color: var(--error-color); font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 4px; font-family: var(--font-body); letter-spacing: 0.02em;">${p.discount}% OFF</span>
+                            <span class="original-price" style="font-size: 12px; color: var(--text-muted); text-decoration: line-through; font-family: var(--font-body);">&#8377;<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></span>
+                            <span class="discount-badge" style="display: inline-block; background-color: rgba(220, 38, 38, 0.08); color: var(--error-color); font-size: 11px; font-weight: 600; padding: 2px 6px; border-radius: 0px; font-family: var(--font-body); letter-spacing: 0.02em;">${p.discount}% OFF</span>
                         </c:if>
                     </div>
                 </div>
