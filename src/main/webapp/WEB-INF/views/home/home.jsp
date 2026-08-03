@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%-- Cache bust: v200 --%>
+<%-- Cache bust: v300 --%>
 <%@ page isELIgnored="false"%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core"%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
@@ -7,7 +7,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
 <!DOCTYPE html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <head>
     <jsp:include page="../partials/head-includes.jsp" />
     <meta charset="utf-8"/>
@@ -16,19 +16,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=300">
     <style>
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-        /* Soft slow transitions for editorial feel */
-        a, button, img {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         /* Toast notification styling */
         #aw-toast {
@@ -63,145 +54,137 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col bg-background">
+<body>
     <c:set var="isHome" value="true" scope="request" />
     <jsp:include page="../partials/navbar.jsp" />
 
-    <main class="flex-grow">
+    <main class="main-content">
         <!-- Hero Section -->
-        <section class="relative w-full h-[90vh] flex items-center justify-center overflow-hidden bg-black">
-            <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover object-center z-0 scale-105 hero-bg-video">
+        <section class="hero-section">
+            <video autoplay loop muted playsinline class="hero-bg-video">
                 <source src="${ctx}/assets/images/hero-main.webm?v=1.0.0" type="video/webm">
             </video>
-            <div class="relative z-20 text-center px-margin-mobile flex flex-col items-center select-none">
-                <span class="font-sans text-xs font-semibold tracking-[0.25em] uppercase mb-6 text-white/90" style="text-shadow: 0 2px 10px rgba(0,0,0,0.6);">Premium Streetwear</span>
-                <h1 class="text-white font-light tracking-[-0.05em] mb-8 leading-[1.05] text-center" style="font-family: 'Cormorant Garamond', serif; font-size: clamp(48px, 8vw, 88px); font-weight: 400; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-                    AURA
-                </h1>
-                <p class="font-sans text-white/90 text-xs sm:text-sm md:text-base tracking-[0.45em] uppercase mb-12 font-light" style="text-shadow: 0 2px 10px rgba(0,0,0,0.6);">
-                    AUTUMN / WINTER 2026
-                </p>
-                <div class="flex gap-4 flex-wrap justify-center">
-                    <a class="inline-flex items-center justify-center px-10 py-4 border border-white text-black font-sans text-xs md:text-sm tracking-[0.15em] uppercase rounded-none bg-white hover:bg-neutral-200 transition-all duration-300 shadow-md hover:-translate-y-0.5" href="${ctx}/products">
-                        DISCOVER COLLECTION
-                    </a>
-                    <a class="inline-flex items-center justify-center px-10 py-4 border border-white text-white font-sans text-xs md:text-sm tracking-[0.15em] uppercase rounded-none bg-transparent hover:bg-white/20 backdrop-blur-sm transition-all duration-300" href="${ctx}/collections">
-                        VIEW LOOKBOOK
-                    </a>
+            <div class="hero-content">
+                <span class="hero-eyebrow">Premium Streetwear</span>
+                <h1 class="hero-title">AURA</h1>
+                <p class="hero-subtitle">AUTUMN / WINTER 2026</p>
+                <div class="hero-buttons">
+                    <a class="btn btn-primary" href="${ctx}/products">DISCOVER COLLECTION</a>
+                    <a class="btn btn-secondary" href="${ctx}/collections">VIEW LOOKBOOK</a>
                 </div>
             </div>
         </section>
 
         <!-- Brand Philosophy Section -->
-        <section class="py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-low">
-            <div class="max-w-4xl mx-auto text-center space-y-stack-md">
-                <span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] uppercase">Ethos</span>
-                <h2 class="font-display-lg-mobile md:text-[48px] md:leading-[1.2] text-primary">
+        <section class="brand-ethos-section">
+            <div class="brand-ethos-inner">
+                <span class="brand-ethos-eyebrow">Ethos</span>
+                <h2 class="brand-ethos-heading">
                     Architectural Wardrobes designed with Technical Purity.
                 </h2>
-                <div class="w-12 h-[1px] bg-outline-variant mx-auto my-stack-lg"></div>
-                <p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                <div class="brand-ethos-divider"></div>
+                <p class="brand-ethos-body">
                     We believe clothing is the primary architecture of the human experience. Our focus remains on textile clarity and essential geometric forms.
                 </p>
             </div>
         </section>
 
         <!-- Material Innovation Highlight -->
-        <section class="grid grid-cols-1 md:grid-cols-2 min-h-[700px]">
-            <div class="bg-surface-container-highest overflow-hidden">
-                <img alt="Macro fabric texture" class="w-full h-full object-cover hover:scale-110 duration-[2000ms]" src="${ctx}/assets/images/innovation-macro.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+        <section class="innovation-section">
+            <div class="innovation-image-wrap">
+                <img alt="Macro fabric texture" class="innovation-image" src="${ctx}/assets/images/innovation-macro.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
             </div>
-            <div class="flex flex-col justify-center p-margin-mobile md:p-32 bg-background">
-                <span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] uppercase mb-stack-md">Innovation</span>
-                <h3 class="font-headline-md text-headline-md mb-stack-lg">V-01 Technical Weave</h3>
-                <p class="font-body-md text-on-surface-variant leading-relaxed mb-12">
+            <div class="innovation-content">
+                <span class="innovation-eyebrow">Innovation</span>
+                <h3 class="innovation-heading">V-01 Technical Weave</h3>
+                <p class="innovation-body">
                     Our signature V-01 Technical Weave utilizes high-density organic polymers cross-stitched for maximum structural integrity without compromising weight. The result is a fabric that maintains its silhouette while adapting to atmospheric moisture and body heat.
                 </p>
-                <div class="grid grid-cols-2 gap-8 border-t border-outline-variant pt-8">
+                <div class="innovation-specs">
                     <div>
-                        <p class="font-mono text-[10px] uppercase text-on-surface-variant mb-1">Weight</p>
-                        <p class="font-mono text-xs text-primary">240 GSM / Ultra-light</p>
+                        <p class="spec-label">Weight</p>
+                        <p class="spec-value">240 GSM / Ultra-light</p>
                     </div>
                     <div>
-                        <p class="font-mono text-[10px] uppercase text-on-surface-variant mb-1">Breathability</p>
-                        <p class="font-mono text-xs text-primary">15,000 g/m²/24h</p>
+                        <p class="spec-label">Breathability</p>
+                        <p class="spec-value">15,000 g/m²/24h</p>
                     </div>
                     <div>
-                        <p class="font-mono text-[10px] uppercase text-on-surface-variant mb-1">Composition</p>
-                        <p class="font-mono text-xs text-primary">82% Organic, 18% Polymer</p>
+                        <p class="spec-label">Composition</p>
+                        <p class="spec-value">82% Organic, 18% Polymer</p>
                     </div>
                     <div>
-                        <p class="font-mono text-[10px] uppercase text-on-surface-variant mb-1">Treatment</p>
-                        <p class="font-mono text-xs text-primary">PFC-Free DWR</p>
+                        <p class="spec-label">Treatment</p>
+                        <p class="spec-value">PFC-Free DWR</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Category Grid -->
-        <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-none shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Men">
-                    <img alt="Men's Collection" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-men.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Men</span></div>
+        <section class="category-section">
+            <div class="category-grid">
+                <a class="category-tile" href="${ctx}/products?gender=Men">
+                    <img alt="Men's Collection" class="category-img" src="${ctx}/assets/images/category-men.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+                    <div class="category-overlay"><span class="category-label">Men</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-none shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?gender=Women">
-                    <img alt="Women's Collection" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-women.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Women</span></div>
+                <a class="category-tile" href="${ctx}/products?gender=Women">
+                    <img alt="Women's Collection" class="category-img" src="${ctx}/assets/images/category-women.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+                    <div class="category-overlay"><span class="category-label">Women</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-none shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Footwear">
-                    <img alt="Footwear" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-footwear.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Footwear</span></div>
+                <a class="category-tile" href="${ctx}/products?category=Footwear">
+                    <img alt="Footwear" class="category-img" src="${ctx}/assets/images/category-footwear.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+                    <div class="category-overlay"><span class="category-label">Footwear</span></div>
                 </a>
-                <a class="group relative aspect-[3/4] overflow-hidden bg-surface-container-low rounded-none shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300" href="${ctx}/products?category=Accessories">
-                    <img alt="Accessories" class="w-full h-full object-cover group-hover:scale-105" src="${ctx}/assets/images/category-accessories.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
-                    <div class="absolute inset-0 flex items-end p-6" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);"><span class="font-label-caps text-label-caps text-white uppercase tracking-widest font-semibold" style="text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);">Accessories</span></div>
+                <a class="category-tile" href="${ctx}/products?category=Accessories">
+                    <img alt="Accessories" class="category-img" src="${ctx}/assets/images/category-accessories.jpg" onerror="this.src='${ctx}/assets/images/fallback.jpg'"/>
+                    <div class="category-overlay"><span class="category-label">Accessories</span></div>
                 </a>
             </div>
         </section>
 
         <!-- Dynamic Studio Selection Products -->
-        <section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto border-t border-outline-variant">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-stack-lg gap-gutter">
+        <section class="products-section">
+            <div class="section-header">
                 <div>
-                    <span class="font-label-caps text-label-caps text-on-surface-variant tracking-[0.2em] uppercase mb-stack-sm block">Archive</span>
-                    <h2 class="font-headline-md text-headline-md">Studio Selection 01</h2>
+                    <span class="section-eyebrow">Archive</span>
+                    <h2 class="section-heading">Studio Selection 01</h2>
                 </div>
-                <a class="font-label-caps text-label-caps border-b border-primary pb-1 hover:opacity-60" href="${ctx}/products">View Archive</a>
+                <a class="section-link" href="${ctx}/products">View Archive</a>
             </div>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+            <div class="products-grid">
                 <c:choose>
                     <c:when test="${empty products}">
-                        <div class="col-span-2 md:col-span-4 text-center py-16 text-on-surface-variant/80 font-body-md tracking-wide">
+                        <div class="empty-state">
                             No products available in the archive. Check back soon.
                         </div>
                     </c:when>
                     <c:otherwise>
                         <c:forEach var="p" items="${products}">
-                            <div class="group cursor-pointer flex flex-col ${p.stockQuantity == 0 ? 'opacity-70' : ''}" onclick="goToProduct('${p.id}')">
-                                <div class="aspect-[3/4] mb-stack-md bg-surface-container-low overflow-hidden relative">
-                                    <img class="w-full h-full object-cover group-hover:scale-105" 
+                            <div class="product-card ${p.stockQuantity == 0 ? 'out-of-stock' : ''}" onclick="goToProduct('${p.id}')">
+                                <div class="product-image-container">
+                                    <img class="product-image" 
                                          src="<c:choose><c:when test="${fn:startsWith(p.image, 'http')}">${p.image}</c:when><c:otherwise>${ctx}/assets/images/${p.image}</c:otherwise></c:choose>"
                                          onerror="this.src='${ctx}/assets/images/fallback.jpg'"
                                          alt="${p.name}">
                                     
                                     <c:choose>
                                         <c:when test="${p.stockQuantity == 0}">
-                                            <div class="absolute top-4 left-4 bg-primary text-on-primary text-[10px] font-mono tracking-widest px-2 py-1 uppercase">OUT OF STOCK</div>
+                                            <div class="product-badge badge-oos">OUT OF STOCK</div>
                                         </c:when>
                                         <c:when test="${p.stockQuantity <= 5}">
-                                            <div class="absolute top-4 left-4 bg-error text-on-error text-[10px] font-mono tracking-widest px-2 py-1 uppercase">ONLY ${p.stockQuantity} LEFT</div>
+                                            <div class="product-badge badge-low-stock">ONLY ${p.stockQuantity} LEFT</div>
                                         </c:when>
                                     </c:choose>
 
-                                    <button class="absolute top-4 right-4 bg-background/80 hover:bg-background text-primary w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 wishlist-btn ${not empty wishlistNames and wishlistNames.contains(p.id) ? 'active' : ''}"
+                                    <button class="wishlist-btn ${not empty wishlistNames and wishlistNames.contains(p.id) ? 'active' : ''}"
                                             data-id="${p.id}"
                                             onclick="toggleWishlist(event, this)">
                                         <span class="material-symbols-outlined" style="${not empty wishlistNames and wishlistNames.contains(p.id) ? 'font-variation-settings: \'FILL\' 1;' : ''}">favorite</span>
                                     </button>
                                     
-                                    <button class="absolute bottom-0 left-0 right-0 bg-primary text-on-primary font-label-md py-3 text-center opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all z-20 add-to-bag-btn ${p.stockQuantity == 0 ? 'disabled' : ''}" 
+                                    <button class="add-to-bag-btn ${p.stockQuantity == 0 ? 'disabled' : ''}" 
                                             data-id="${p.id}" 
                                             data-size="M" 
                                             data-price="${p.price}" 
@@ -210,16 +193,16 @@
                                         ${p.stockQuantity == 0 ? 'OUT OF STOCK' : '+ ADD TO BAG'}
                                     </button>
                                 </div>
-                                <div class="flex justify-between items-start mt-2">
-                                    <div>
-                                        <h3 class="font-body-md text-primary group-hover:underline">${p.name}</h3>
-                                        <p class="font-label-md text-on-surface-variant">${p.category}</p>
+                                <div class="product-info-row">
+                                    <div class="product-info-left">
+                                        <h3 class="product-name">${p.name}</h3>
+                                        <p class="product-category">${p.category}</p>
                                     </div>
-                                    <div class="text-right">
-                                        <p class="font-label-md text-primary font-medium">&#8377;<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></p>
+                                    <div class="product-info-right">
+                                        <p class="product-price">&#8377;<fmt:formatNumber value="${p.price}" maxFractionDigits="0"/></p>
                                         <c:if test="${p.discount > 0}">
-                                            <p class="text-on-surface-variant line-through text-[11px] mt-0.5">&#8377;<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></p>
-                                            <span class="inline-block bg-error/10 text-error text-[10px] font-mono tracking-widest px-1.5 py-0.5 rounded mt-0.5 font-bold">${p.discount}% OFF</span>
+                                            <p class="product-original-price">&#8377;<fmt:formatNumber value="${p.originalPrice}" maxFractionDigits="0"/></p>
+                                            <span class="discount-badge">${p.discount}% OFF</span>
                                         </c:if>
                                     </div>
                                 </div>
@@ -231,41 +214,45 @@
         </section>
 
         <!-- Trust Signals -->
-        <section class="py-stack-lg border-t border-outline-variant px-margin-mobile md:px-margin-desktop bg-surface-bright">
-            <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-center items-center gap-8 md:gap-16">
-                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Complimentary Global Shipping</span>
-                <span class="hidden md:block w-1 h-1 bg-outline-variant rounded-full"></span>
-                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">90-Day Returns</span>
-                <span class="hidden md:block w-1 h-1 bg-outline-variant rounded-full"></span>
-                <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest">Secured Checkout</span>
+        <section class="trust-badges-section">
+            <div class="trust-badges-container">
+                <span class="trust-badge-item">Complimentary Global Shipping</span>
+                <span class="trust-badge-dot"></span>
+                <span class="trust-badge-item">90-Day Returns</span>
+                <span class="trust-badge-dot"></span>
+                <span class="trust-badge-item">Secured Checkout</span>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-primary w-full py-section-gap-mobile md:py-32 border-t border-outline-variant">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
-            <div class="flex flex-col gap-stack-md col-span-1 md:col-span-2 pr-0 md:pr-12">
-                <h4 class="font-headline-sm text-headline-sm font-medium text-white" style="font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 500; letter-spacing: -0.04em;">AuraWear</h4>
-                <p class="font-body-md text-body-md text-white/80 max-w-md leading-relaxed">
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-brand-col">
+                <div class="footer-logo">AuraWear</div>
+                <p class="footer-desc">
                     High-end minimalist apparel designed with organic precision. We focus on textile clarity and essential silhouettes for the modern wardrobe.
                 </p>
-                <p class="font-label-md text-label-md text-white/60 mt-stack-lg">
-                    © 2025 AuraWear. All rights reserved.
+                <p class="footer-copyright">
+                    &copy; 2025 AuraWear. All rights reserved.
                 </p>
             </div>
-            <div class="flex flex-col gap-stack-md mt-stack-lg md:mt-0">
-                <h5 class="font-label-caps text-label-caps text-accent uppercase mb-2 font-semibold tracking-wider">Explore</h5>
-                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/products">Shop All</a>
-                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/products?gender=Men">New Arrivals</a>
-                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/products?category=Accessories">Essentials</a>
-                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/collections">Collections</a>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">Explore</h5>
+                <ul class="footer-links-list">
+                    <li><a href="${ctx}/products">Shop All</a></li>
+                    <li><a href="${ctx}/products?gender=Men">New Arrivals</a></li>
+                    <li><a href="${ctx}/products?category=Accessories">Essentials</a></li>
+                    <li><a href="${ctx}/collections">Collections</a></li>
+                </ul>
             </div>
-            <div class="flex flex-col gap-stack-md mt-stack-lg md:mt-0">
-                <h5 class="font-label-caps text-label-caps text-accent uppercase mb-2 font-semibold tracking-wider">Support</h5>
-                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="mailto:support@aurawear.com">Contact</a>
-                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="${ctx}/my-orders">Shipping &amp; Returns</a>
-                <a class="font-body-md text-body-md text-white/80 hover:text-accent transition-colors" href="javascript:void(0)" onclick="openSizeGuide()">Size Guide</a>
+            <div class="footer-links-col">
+                <h5 class="footer-heading">Support</h5>
+                <ul class="footer-links-list">
+                    <li><a href="mailto:support@aurawear.com">Contact</a></li>
+                    <li><a href="${ctx}/my-orders">Shipping &amp; Returns</a></li>
+                    <li><a href="javascript:void(0)" onclick="openSizeGuide()">Size Guide</a></li>
+                </ul>
             </div>
         </div>
     </footer>
@@ -321,7 +308,7 @@
         const id = btn.getAttribute("data-id");
         const size = btn.getAttribute("data-size");
         const price = btn.getAttribute("data-price");
-        const pName = btn.closest(".group").querySelector("h3")?.innerText || 'Product';
+        const pName = btn.closest(".product-card")?.querySelector("h3")?.innerText || 'Product';
         btn.disabled = true;
         btn.innerText = "Adding...";
         fetch(ctx + "/add-to-cart", {
