@@ -84,7 +84,8 @@
 
                                 <!-- Heart Remove Button -->
                                 <button class="wl-remove-btn"
-                                        onclick="removeItem(event, ${item.productId}, '${fn:escapeXml(item.productName)}')"
+                                        data-id="${item.productId}"
+                                        onclick="removeItem(event, this)"
                                         aria-label="Remove from wishlist"
                                         title="Remove from wishlist">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 400;">favorite</span>
@@ -99,7 +100,10 @@
 
                                 <!-- Add to Bag Button -->
                                 <button class="wl-add-btn"
-                                        onclick="addToCart(event, ${item.productId}, '${fn:escapeXml(item.size)}', ${item.price})"
+                                        data-id="${item.productId}"
+                                        data-size="${item.size}"
+                                        data-price="${item.price}"
+                                        onclick="addToCart(event, this)"
                                         id="addBtn-${item.productId}">
                                     + Add to Bag
                                 </button>
@@ -194,8 +198,13 @@
     <script>
     const ctx = "${ctx}";
 
-    function removeItem(e, productId, productName) {
+    function removeItem(e, btn) {
         e.stopPropagation();
+        const card = btn.closest(".wishlist-card");
+        const productId = btn.getAttribute("data-id");
+        const nameEl = card ? card.querySelector(".wl-name") : null;
+        const productName = nameEl ? nameEl.innerText : "Product";
+
         fetch(ctx + "/wishlist-toggle", {
             method: "POST",
             headers: {
@@ -208,7 +217,6 @@
         .then(res => {
             if (res.status === 401) { window.location.href = ctx + "/login"; return; }
             if (!res.ok) throw new Error();
-            const card = document.getElementById("wcard-" + productId);
             if (card) {
                 card.style.transition = "opacity 0.3s, transform 0.3s";
                 card.style.opacity = "0";
@@ -220,9 +228,12 @@
         .catch(() => showToast("Could not remove. Try again."));
     }
 
-    function addToCart(e, productId, size, price) {
+    function addToCart(e, btn) {
         e.stopPropagation();
-        const btn = e.currentTarget;
+        const productId = btn.getAttribute("data-id");
+        const size = btn.getAttribute("data-size") || "M";
+        const price = btn.getAttribute("data-price");
+
         btn.disabled = true;
         btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Adding...';
 
@@ -232,7 +243,7 @@
                 "Content-Type": "application/x-www-form-urlencoded",
                 "X-CSRF-Token": window._csrf
             },
-            body: "id=" + encodeURIComponent(productId) + "&size=" + encodeURIComponent(size || "M") + "&price=" + encodeURIComponent(price),
+            body: "id=" + encodeURIComponent(productId) + "&size=" + encodeURIComponent(size) + "&price=" + encodeURIComponent(price),
             credentials: "include"
         })
         .then(res => {
@@ -255,7 +266,7 @@
                         item_name: pName,
                         price: parseFloat(price),
                         quantity: 1,
-                        item_size: size || 'M'
+                        item_size: size
                     }]
                 });
             }
