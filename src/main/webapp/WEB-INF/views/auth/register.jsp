@@ -111,19 +111,19 @@
                     <div class="auth-field">
                         <h3 class="interests-label">INTERESTS</h3>
                         <div class="auth-interest-wrap">
-                            <div class="relative">
+                            <div class="otp-box-wrapper">
                                 <input class="interest-chip sr-only" id="streetwear" name="interests" type="checkbox" value="Streetwear"/>
                                 <label class="auth-interest-label" for="streetwear">Streetwear</label>
                             </div>
-                            <div class="relative">
+                            <div class="otp-box-wrapper">
                                 <input class="interest-chip sr-only" id="accessories" name="interests" type="checkbox" value="Accessories"/>
                                 <label class="auth-interest-label" for="accessories">Accessories</label>
                             </div>
-                            <div class="relative">
+                            <div class="otp-box-wrapper">
                                 <input class="interest-chip sr-only" id="outerwear" name="interests" type="checkbox" value="Outerwear"/>
                                 <label class="auth-interest-label" for="outerwear">Outerwear</label>
                             </div>
-                            <div class="relative">
+                            <div class="otp-box-wrapper">
                                 <input class="interest-chip sr-only" id="footwear" name="interests" type="checkbox" value="Footwear"/>
                                 <label class="auth-interest-label" for="footwear">Footwear</label>
                             </div>
@@ -182,7 +182,7 @@
                     </div>
 
                     <div class="otp-resend">
-                        Resend code in <span id="timer" class="text-primary font-bold">30</span>s
+                        Resend code in <span id="timer" class="otp-timer">30</span>s
                     </div>
 
                     <button id="resendBtn" class="auth-btn auth-btn-outline" type="button" onclick="window.location='${ctx}/register?resend=true'" style="display:none;">

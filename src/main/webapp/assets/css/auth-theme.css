@@ -623,6 +623,12 @@ body {
     text-decoration: none;
 }
 
+.auth-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
 .auth-header-link {
     font-size: 13px;
     color: var(--secondary-text);
@@ -798,6 +804,15 @@ body {
 }
 .auth-otp-input:focus {
     border-color: var(--primary-brand);
+}
+
+.otp-box-wrapper {
+    position: relative;
+}
+
+.otp-timer {
+    color: var(--primary-brand);
+    font-weight: 700;
 }
 
 .sr-only {
