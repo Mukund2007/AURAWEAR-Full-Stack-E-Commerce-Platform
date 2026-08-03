@@ -20,77 +20,11 @@
     </script>
 
     
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="${ctx}/assets/css/design-tokens.css?v=300">
     <link rel="stylesheet" href="${ctx}/assets/css/auth-theme.css">
 
-    <script id="tailwind-config">
-      tailwind.config = {
-        
-        theme: {
-          extend: {
-            "colors": {
-                    "surface": "#f5f5f5",             /* Neutral 50 */
-                    "background": "#ffffff",          /* Pure White */
-                    "primary": "#000000",             /* Pure Black */
-                    "secondary": "#262626",           /* Neutral 800 */
-                    "accent": "#000000",              /* Black */
-                    "accent-light": "#404040",        /* Neutral 700 */
-                    "on-surface": "#000000",          /* Primary Text */
-                    "on-background": "#000000",
-                    "on-primary": "#ffffff",
-                    "on-secondary": "#ffffff",
-                    "outline": "#e5e5e5",             /* Neutral 200 */
-                    "outline-variant": "#e5e5e5",
-                    "error": "#dc2626",               /* Red 600 */
-                    "success": "#16a34a",             /* Green 600 */
-                    "surface-container-low": "#f5f5f5",
-                    "surface-container-high": "#e5e5e5",
-                    "surface-container-highest": "#d4d4d4"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0px",
-                    "lg": "0px",
-                    "xl": "0px",
-                    "full": "999px"
-            },
-            "spacing": {
-                    "margin-desktop": "80px",
-                    "container-max": "1440px",
-                    "stack-lg": "32px",
-                    "margin-mobile": "20px",
-                    "section-gap": "120px",
-                    "section-gap-mobile": "64px",
-                    "gutter": "24px",
-                    "stack-md": "16px",
-                    "stack-sm": "8px"
-            },
-            "fontFamily": {
-                    "label-md": ["DM Sans", "sans-serif"],
-                    "display-lg": ["DM Sans", "sans-serif"],
-                    "body-md": ["DM Sans", "sans-serif"],
-                    "headline-md": ["DM Sans", "sans-serif"],
-                    "body-lg": ["DM Sans", "sans-serif"],
-                    "display-lg-mobile": ["DM Sans", "sans-serif"],
-                    "headline-sm": ["DM Sans", "sans-serif"],
-                    "label-caps": ["DM Sans", "sans-serif"]
-            },
-            "fontSize": {
-                    "label-md": ["14px", {"lineHeight": "1.4", "fontWeight": "500"}],
-                    "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "500"}],
-                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "headline-md": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "400"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "500"}],
-                    "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
-                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.08em", "fontWeight": "600"}]
-            }
-          },
-        },
-      }
-    </script>
     <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;

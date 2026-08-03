@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="${ctx}/assets/css/orders.css?v=300">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 </head>
-<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<body>
 
     <jsp:include page="../partials/navbar.jsp" />
 
