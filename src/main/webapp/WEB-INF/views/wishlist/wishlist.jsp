@@ -1,5 +1,5 @@
-<%@ page contentType="text/html;charset=UTF-8" isELIgnored="false" %>
-<%-- Cache bust: v200 --%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+<%-- Cache bust: v300 --%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
 <%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
@@ -34,7 +34,7 @@
             <p class="wl-subtitle">
                 <c:choose>
                     <c:when test="${not empty wishlist}">
-                        <span id="headerCount">${wishlist.size()}</span> item<c:if test="${wishlist.size() != 1}">s</c:if> saved
+                        <span id="headerCount">${fn:length(wishlist)}</span> item<c:if test="${fn:length(wishlist) != 1}">s</c:if> saved
                     </c:when>
                     <c:otherwise>Items you've saved for later</c:otherwise>
                 </c:choose>
@@ -68,7 +68,7 @@
                                         <c:when test="${not empty item.image}">
                                             <img src="<c:choose><c:when test="${fn:startsWith(item.image, 'http')}">${item.image}</c:when><c:otherwise>${ctx}/assets/images/${item.image}</c:otherwise></c:choose>"
                                                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
-                                                 alt="<c:out value="${item.productName}"/>"
+                                                 alt="${fn:escapeXml(item.productName)}"
                                                  loading="lazy">
                                             <div class="wl-img-fallback" style="display:none;">
                                                 <span class="material-symbols-outlined" style="font-size: 40px; color: var(--wl-outline); opacity: 0.4;">checkroom</span>
@@ -84,7 +84,7 @@
 
                                 <!-- Heart Remove Button -->
                                 <button class="wl-remove-btn"
-                                        onclick="removeItem(event, ${item.productId}, '${fn:replace(fn:escapeXml(item.productName), "'", "\\'")}')"
+                                        onclick="removeItem(event, ${item.productId}, '${fn:escapeXml(item.productName)}')"
                                         aria-label="Remove from wishlist"
                                         title="Remove from wishlist">
                                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1, 'wght' 400;">favorite</span>
@@ -94,12 +94,12 @@
                                 <div class="wl-info">
                                     <h3 class="wl-name"><c:out value="${item.productName}"/></h3>
                                     <p class="wl-category">AuraWear</p>
-                                    <p class="wl-price">₹<fmt:formatNumber value="${item.price}" maxFractionDigits="0"/></p>
+                                    <p class="wl-price">&#8377;<fmt:formatNumber value="${item.price}" maxFractionDigits="0"/></p>
                                 </div>
 
                                 <!-- Add to Bag Button -->
                                 <button class="wl-add-btn"
-                                        onclick="addToCart(event, ${item.productId}, '${fn:replace(fn:escapeXml(item.size), "'", "\\'")}', ${item.price})"
+                                        onclick="addToCart(event, ${item.productId}, '${fn:escapeXml(item.size)}', ${item.price})"
                                         id="addBtn-${item.productId}">
                                     + Add to Bag
                                 </button>
@@ -119,7 +119,7 @@
                     <div class="wishlist-strip">
                         <span id="wishlistCount">
                             <span class="material-symbols-outlined" style="font-size: 18px; margin-right: 6px; font-variation-settings: 'FILL' 0, 'wght' 400;">favorite</span>
-                            ${wishlist.size()} saved item<c:if test="${wishlist.size() != 1}">s</c:if>
+                            ${fn:length(wishlist)} saved item<c:if test="${fn:length(wishlist) != 1}">s</c:if>
                         </span>
                         <a href="${ctx}/products" style="text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">Shop more <span class="material-symbols-outlined" style="font-size: 16px;">arrow_right_alt</span></a>
                     </div>
@@ -184,7 +184,7 @@
             </div>
         </div>
         <div class="footer-bottom-row">
-            <p class="footer-copyright">© 2025 AURAWEAR. ALL RIGHTS RESERVED.</p>
+            <p class="footer-copyright">&copy; 2025 AURAWEAR. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 
@@ -244,7 +244,9 @@
             updateCartCount();
             
             if (typeof gtag === 'function') {
-                const pName = btn.closest(".wishlist-card")?.querySelector(".wl-name")?.innerText || 'Product';
+                const card = btn.closest(".wishlist-card");
+                const nameEl = card ? card.querySelector(".wl-name") : null;
+                const pName = nameEl ? nameEl.innerText : 'Product';
                 gtag('event', 'add_to_cart', {
                     currency: 'INR',
                     value: parseFloat(price),
