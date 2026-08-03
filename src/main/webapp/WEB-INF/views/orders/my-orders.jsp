@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
-<%-- Cache bust: v200 --%>
+<%-- Cache bust: v300 --%>
 <%@ taglib prefix="c"   uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="fn"  uri="jakarta.tags.functions" %>
@@ -14,7 +14,7 @@
     <title>My Orders — AuraWear</title>
     <link rel="stylesheet" href="${ctx}/assets/css/home.css?v=300">
     <link rel="stylesheet" href="${ctx}/assets/css/orders.css?v=300">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 </head>
 <body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased">
 
@@ -30,7 +30,7 @@
                     <p>
                         <c:choose>
                             <c:when test="${not empty orders}">
-                                ${orders.size()} premium selection<c:if test="${orders.size() != 1}">s</c:if> curated
+                                ${fn:length(orders)} premium selection<c:if test="${fn:length(orders) != 1}">s</c:if> curated
                             </c:when>
                             <c:otherwise>Track and manage your high-end acquisitions</c:otherwise>
                         </c:choose>
@@ -70,7 +70,7 @@
                                 <span class="stat-label">Total Curated</span>
                                 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0, 'wght' 200;">inventory_2</span>
                             </div>
-                            <div class="stat-value">${orders.size()}</div>
+                            <div class="stat-value">${fn:length(orders)}</div>
                         </div>
                         <div class="stat-widget">
                             <div class="stat-widget-header">
@@ -143,7 +143,7 @@
                                         </div>
                                         
                                         <!-- Price -->
-                                        <span class="order-card-price">₹<fmt:formatNumber value="${order[1]}" maxFractionDigits="0"/></span>
+                                        <span class="order-card-price">&#8377;<fmt:formatNumber value="${order[1]}" maxFractionDigits="0"/></span>
                                     </div>
 
                                     <!-- Right Column: Status & Actions -->
@@ -216,7 +216,12 @@
                                             <!-- Main Action Button (Outline button) -->
                                             <c:choose>
                                                 <c:when test="${status == 'Placed' || status == 'COD_PENDING' || status == 'COD_CONFIRMED' || status == 'Shipped' || status == 'PAID'}">
-                                                    <button class="order-action-btn" onclick="event.stopPropagation(); openTracker('${order[0]}', '${fn:replace(fn:escapeXml(order[3]), "'", "\\'")}', '${fn:replace(fn:escapeXml(status), "'", "\\'")}', '${order[4]}')">
+                                                    <button class="order-action-btn"
+                                                            data-order-id="${order[0]}"
+                                                            data-product-name="${fn:escapeXml(order[3])}"
+                                                            data-status="${fn:escapeXml(status)}"
+                                                            data-date="${order[4]}"
+                                                            onclick="event.stopPropagation(); openTracker(this)">
                                                         + Track Order
                                                     </button>
                                                 </c:when>
@@ -278,7 +283,7 @@
             </div>
         </div>
         <div class="footer-bottom-row">
-            <p class="footer-copyright">© 2025 AURAWEAR. ALL RIGHTS RESERVED.</p>
+            <p class="footer-copyright">&copy; 2025 AURAWEAR. ALL RIGHTS RESERVED.</p>
         </div>
     </footer>
 
@@ -362,7 +367,12 @@
 
     <script>
         // TRACKER CONTROLLER
-        function openTracker(orderId, productName, status, date) {
+        function openTracker(btn) {
+            const orderId = btn.getAttribute('data-order-id');
+            const productName = btn.getAttribute('data-product-name');
+            const status = btn.getAttribute('data-status');
+            const date = btn.getAttribute('data-date');
+
             document.getElementById('trackerOrderId').innerText = orderId;
             document.getElementById('trackerProductName').innerText = productName;
             
