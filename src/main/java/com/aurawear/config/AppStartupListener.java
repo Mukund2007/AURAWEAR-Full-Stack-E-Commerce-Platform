@@ -50,6 +50,14 @@ public class AppStartupListener implements ServletContextListener {
 
             ctx.log("[AppStartupListener] All environment variables validated successfully. Application starting. ✓");
 
+            // Seed the products table if it is empty (ensures Render deploys have data)
+            try {
+                DatabaseSeeder.seedIfEmpty();
+                ctx.log("[AppStartupListener] Database seed check completed. ✓");
+            } catch (Exception e) {
+                ctx.log("[AppStartupListener] WARNING: Database seeding failed — " + e.getMessage());
+            }
+
             // Log warning if email config is missing (but don't block startup)
             if (AppConfig.get("BREVO_API_KEY") == null || AppConfig.get("AURAWEAR_EMAIL") == null) {
                 ctx.log("[AppStartupListener] WARNING: Email configuration (BREVO_API_KEY or AURAWEAR_EMAIL) is not set. Email delivery will fail if triggered.");
