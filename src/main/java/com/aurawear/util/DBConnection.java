@@ -56,7 +56,11 @@ public class DBConnection {
 
             dataSource = new HikariDataSource(config);
         } catch (Exception e) {
-            throw new RuntimeException("[DBConnection] Failed to initialise HikariCP data source", e);
+            String details = e.getMessage();
+            if (e.getCause() != null) {
+                details += " | Cause: " + e.getCause().getMessage();
+            }
+            throw new RuntimeException("[DBConnection] Failed to initialise HikariCP data source: " + details, e);
         }
     }
 

@@ -37,7 +37,11 @@ public class HealthCheckServlet extends HttpServlet {
             }
             response.getWriter().write("OK [DB: Connected, Products: " + count + "]");
         } catch (Exception e) {
-            response.getWriter().write("DEGRADED [DB Error: " + e.getMessage() + "]");
+            Throwable root = e;
+            while (root.getCause() != null && root.getCause() != root) {
+                root = root.getCause();
+            }
+            response.getWriter().write("DEGRADED [DB Error: " + root.getMessage() + "]");
         }
     }
 }
