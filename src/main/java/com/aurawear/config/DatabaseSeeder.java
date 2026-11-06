@@ -7,39 +7,151 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
- * DatabaseSeeder — Seeds the products table with the initial 50-product catalog
- * if the table exists but is empty.
+ * DatabaseSeeder — Ensures all necessary database tables exist and seeds
+ * the initial 50-product catalog and default shop settings if empty.
  *
- * Called once from AppStartupListener.contextInitialized() after env-var
- * validation passes. This ensures every fresh deployment (including Render)
- * has the full product catalog without needing a manual schema.sql import.
- *
- * The seeder is idempotent: if products already exist it does nothing.
+ * Runs automatically on startup via AppStartupListener.
  */
 public class DatabaseSeeder {
 
-    /**
-     * Seeds the products table when it is empty.
-     * Logs progress to the servlet context log via System.out.
-     */
     public static void seedIfEmpty() {
-        System.out.println("[DatabaseSeeder] Checking if products table needs seeding...");
+        System.out.println("[DatabaseSeeder] Initializing database verification & seeding...");
 
         try (Connection con = DBConnection.getConnection()) {
 
-            // ── Check if products table already has data ────────────────────
+            // 1. Create tables if they do not exist
+            try (Statement st = con.createStatement()) {
+                st.execute("CREATE TABLE IF NOT EXISTS `users` (" +
+                        "  `id` int NOT NULL AUTO_INCREMENT," +
+                        "  `name` varchar(100) DEFAULT NULL," +
+                        "  `email` varchar(100) DEFAULT NULL," +
+                        "  `password` varchar(100) DEFAULT NULL," +
+                        "  `verified` tinyint(1) DEFAULT '0'," +
+                        "  `role` varchar(50) DEFAULT 'customer'," +
+                        "  PRIMARY KEY (`id`)," +
+                        "  UNIQUE KEY `email` (`email`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                st.execute("CREATE TABLE IF NOT EXISTS `user_profiles` (" +
+                        "  `id` int NOT NULL AUTO_INCREMENT," +
+                        "  `user_id` int DEFAULT NULL," +
+                        "  `username` varchar(50) DEFAULT NULL," +
+                        "  `style_preference` varchar(50) DEFAULT NULL," +
+                        "  `clothing_size` varchar(10) DEFAULT NULL," +
+                        "  `fit_preference` varchar(30) DEFAULT NULL," +
+                        "  `interests` varchar(255) DEFAULT NULL," +
+                        "  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP," +
+                        "  PRIMARY KEY (`id`)," +
+                        "  KEY `user_id` (`user_id`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                st.execute("CREATE TABLE IF NOT EXISTS `products` (" +
+                        "  `id` int NOT NULL AUTO_INCREMENT," +
+                        "  `name` varchar(100) DEFAULT NULL," +
+                        "  `price` int DEFAULT NULL," +
+                        "  `original_price` int DEFAULT NULL," +
+                        "  `discount` int DEFAULT NULL," +
+                        "  `category` varchar(50) DEFAULT NULL," +
+                        "  `type` varchar(50) DEFAULT NULL," +
+                        "  `size` varchar(100) DEFAULT NULL," +
+                        "  `color` varchar(100) DEFAULT NULL," +
+                        "  `gender` varchar(10) DEFAULT NULL," +
+                        "  `rating` decimal(2,1) DEFAULT 0.0," +
+                        "  `reviews` int DEFAULT 0," +
+                        "  `brand` varchar(50) DEFAULT NULL," +
+                        "  `image` varchar(500) DEFAULT NULL," +
+                        "  `stock_quantity` int NOT NULL DEFAULT 100," +
+                        "  PRIMARY KEY (`id`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                st.execute("CREATE TABLE IF NOT EXISTS `cart` (" +
+                        "  `id` int NOT NULL AUTO_INCREMENT," +
+                        "  `user_email` varchar(100) DEFAULT NULL," +
+                        "  `price` double DEFAULT NULL," +
+                        "  `quantity` int DEFAULT NULL," +
+                        "  `product_id` int DEFAULT NULL," +
+                        "  `size` varchar(10) DEFAULT NULL," +
+                        "  PRIMARY KEY (`id`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                st.execute("CREATE TABLE IF NOT EXISTS `orders` (" +
+                        "  `id` int NOT NULL AUTO_INCREMENT," +
+                        "  `user_email` varchar(100) DEFAULT NULL," +
+                        "  `total` double DEFAULT NULL," +
+                        "  `status` varchar(50) DEFAULT NULL," +
+                        "  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP," +
+                        "  `payment_id` varchar(100) DEFAULT NULL," +
+                        "  `shipping_name` varchar(100) DEFAULT NULL," +
+                        "  `shipping_phone` varchar(20) DEFAULT NULL," +
+                        "  `shipping_address` varchar(255) DEFAULT NULL," +
+                        "  `shipping_city` varchar(50) DEFAULT NULL," +
+                        "  `shipping_state` varchar(50) DEFAULT NULL," +
+                        "  `shipping_pincode` varchar(20) DEFAULT NULL," +
+                        "  PRIMARY KEY (`id`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                st.execute("CREATE TABLE IF NOT EXISTS `order_items` (" +
+                        "  `id` int NOT NULL AUTO_INCREMENT," +
+                        "  `order_id` int NOT NULL," +
+                        "  `product_id` int NOT NULL," +
+                        "  `product_name` varchar(255) DEFAULT NULL," +
+                        "  `quantity` int DEFAULT '1'," +
+                        "  `price` decimal(10,2) DEFAULT NULL," +
+                        "  `size` varchar(20) DEFAULT NULL," +
+                        "  PRIMARY KEY (`id`)," +
+                        "  KEY `order_id` (`order_id`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                st.execute("CREATE TABLE IF NOT EXISTS `wishlist` (" +
+                        "  `id` int NOT NULL AUTO_INCREMENT," +
+                        "  `user_email` varchar(100) DEFAULT NULL," +
+                        "  `product_name` varchar(100) DEFAULT NULL," +
+                        "  `price` double DEFAULT NULL," +
+                        "  `product_id` int DEFAULT NULL," +
+                        "  PRIMARY KEY (`id`)," +
+                        "  KEY `product_id` (`product_id`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                st.execute("CREATE TABLE IF NOT EXISTS `shop_settings` (" +
+                        "  `setting_key` varchar(50) NOT NULL," +
+                        "  `setting_value` varchar(255) DEFAULT NULL," +
+                        "  PRIMARY KEY (`setting_key`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                st.execute("CREATE TABLE IF NOT EXISTS `reviews` (" +
+                        "  `id` INT AUTO_INCREMENT PRIMARY KEY," +
+                        "  `product_id` INT NOT NULL," +
+                        "  `user_email` VARCHAR(255) NOT NULL," +
+                        "  `rating` INT NOT NULL," +
+                        "  `review_text` TEXT," +
+                        "  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
+                        "  UNIQUE KEY `unique_review` (`product_id`, `user_email`)" +
+                        ") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;");
+
+                // Seed default shop settings
+                st.execute("INSERT IGNORE INTO `shop_settings` VALUES ('free_shipping_threshold','999'), ('shipping_charge','99')");
+            }
+
+            // 2. Check if products table already has data
+            int currentCount = 0;
             try (Statement st = con.createStatement();
                  ResultSet rs = st.executeQuery("SELECT COUNT(*) FROM products")) {
-                if (rs.next() && rs.getInt(1) > 0) {
-                    System.out.println("[DatabaseSeeder] Products table already has " + rs.getInt(1) + " rows — skipping seed.");
-                    return;
+                if (rs.next()) {
+                    currentCount = rs.getInt(1);
                 }
             }
 
-            // ── Insert the 50-product catalog ──────────────────────────────
+            if (currentCount > 0) {
+                System.out.println("[DatabaseSeeder] Products table already has " + currentCount + " rows. No seeding needed.");
+                return;
+            }
+
+            // 3. Insert the 50-product catalog
             System.out.println("[DatabaseSeeder] Products table is empty — seeding 50 products...");
 
-            String sql = "INSERT INTO products (id, name, price, original_price, discount, category, type, size, color, gender, rating, reviews, brand, image, stock_quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO products (id, name, price, original_price, discount, category, type, size, color, gender, rating, reviews, brand, image, stock_quantity) " +
+                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) " +
+                         "ON DUPLICATE KEY UPDATE name=VALUES(name)";
 
             try (PreparedStatement ps = con.prepareStatement(sql)) {
 
@@ -97,21 +209,21 @@ public class DatabaseSeeder {
                 };
 
                 for (Object[] p : products) {
-                    ps.setInt(1, (int) p[0]);           // id
-                    ps.setString(2, (String) p[1]);     // name
-                    ps.setInt(3, (int) p[2]);           // price
-                    ps.setInt(4, (int) p[3]);           // original_price
-                    ps.setInt(5, (int) p[4]);           // discount
-                    ps.setString(6, (String) p[5]);     // category
-                    ps.setString(7, (String) p[6]);     // type
-                    ps.setString(8, (String) p[7]);     // size
-                    ps.setString(9, (String) p[8]);     // color
-                    ps.setString(10, (String) p[9]);    // gender
-                    ps.setDouble(11, (double) p[10]);   // rating
-                    ps.setInt(12, (int) p[11]);         // reviews
-                    ps.setString(13, (String) p[12]);   // brand
-                    ps.setString(14, (String) p[13]);   // image
-                    ps.setInt(15, (int) p[14]);         // stock_quantity
+                    ps.setInt(1, (int) p[0]);
+                    ps.setString(2, (String) p[1]);
+                    ps.setInt(3, (int) p[2]);
+                    ps.setInt(4, (int) p[3]);
+                    ps.setInt(5, (int) p[4]);
+                    ps.setString(6, (String) p[5]);
+                    ps.setString(7, (String) p[6]);
+                    ps.setString(8, (String) p[7]);
+                    ps.setString(9, (String) p[8]);
+                    ps.setString(10, (String) p[9]);
+                    ps.setDouble(11, (double) p[10]);
+                    ps.setInt(12, (int) p[11]);
+                    ps.setString(13, (String) p[12]);
+                    ps.setString(14, (String) p[13]);
+                    ps.setInt(15, (int) p[14]);
                     ps.addBatch();
                 }
 
@@ -120,7 +232,6 @@ public class DatabaseSeeder {
             }
 
         } catch (Exception e) {
-            // Log but don't crash the app — admin can still add products manually
             System.err.println("[DatabaseSeeder] WARNING — Failed to seed products: " + e.getMessage());
             e.printStackTrace();
         }
