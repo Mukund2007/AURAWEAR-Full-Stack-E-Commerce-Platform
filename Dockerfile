@@ -15,9 +15,18 @@ FROM tomcat:10.0-jdk17
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
 COPY --from=builder /app/target/AuraWear.war /usr/local/tomcat/webapps/ROOT.war
 
-# Dynamic JVM memory optimization (automatically adjusts to 75% of container RAM)
-ENV CATALINA_OPTS="-XX:MaxRAMPercentage=75.0 -XX:+UseG1GC"
+# Install lightweight embedded MariaDB database
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends mariadb-server mariadb-client && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy startup orchestration script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Memory tuning: Allocate memory appropriately so Tomcat + MariaDB fit under 512MB RAM
+ENV CATALINA_OPTS="-Xms128m -Xmx280m -XX:+UseG1GC"
 
 EXPOSE 8080
-CMD ["catalina.sh", "run"]
-
+CMD ["/usr/local/bin/entrypoint.sh"]

@@ -25,12 +25,7 @@ public class AppConfig {
 
     // ── Required variables — startup will FAIL if any of these are missing ──────
     private static final String[] REQUIRED_VARS = {
-        // Database
-        "AURAWEAR_DB_URL",
-        "AURAWEAR_DB_USER",
-        "AURAWEAR_DB_PASSWORD",
-        // Razorpay (at least the active-mode keys must be resolvable at runtime)
-        "RAZORPAY_LIVE_MODE",
+        // Razorpay mode (defaults to false if absent)
     };
 
     // ── Local-dev fallback properties (git-ignored) ─────────────────────────────

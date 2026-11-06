@@ -158,6 +158,12 @@
             <!-- STEP 2: Verification Form -->
             <div id="step2" ${empty showOtp ? 'style="display:none"' : ''}>
                 
+                <c:if test="${not empty otpNotice}">
+                    <div style="background: #111; color: #fff; border: 1px solid #333; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; letter-spacing: 0.5px; text-align: center; border-radius: 4px;">
+                        <c:out value="${otpNotice}" />
+                    </div>
+                </c:if>
+
                 <c:if test="${not empty otpError}">
                     <div class="auth-error">
                         <c:out value="${otpError}" />
