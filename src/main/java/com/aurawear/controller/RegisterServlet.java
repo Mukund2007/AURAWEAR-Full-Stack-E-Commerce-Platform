@@ -44,7 +44,7 @@ public class RegisterServlet extends HttpServlet {
                 System.out.println("[REGISTRATION][RESEND] OTP resent successfully to '" + email + "'");
             } catch (Exception e) {
                 System.err.println("[REGISTRATION][RESEND] Exception sending OTP to '" + email + "': " + e.getMessage());
-                request.setAttribute("otpNotice", "Email service unavailable. Your verification code is: " + otp);
+                request.setAttribute("error", "Could not resend verification email. Please try again.");
             }
 
             request.setAttribute("showOtp", true);
@@ -147,8 +147,10 @@ public class RegisterServlet extends HttpServlet {
             EmailUtil.sendOTP(normalizedEmail, otp);
             System.out.println("[REGISTRATION] STEP 6: OTP email SENT successfully to '" + normalizedEmail + "'");
         } catch (Exception e) {
-            System.err.println("[REGISTRATION] Warning: Exception sending OTP email to '" + normalizedEmail + "': " + e.getMessage());
-            request.setAttribute("otpNotice", "Email delivery issue. Your verification code is: " + otp);
+            System.err.println("[REGISTRATION] STEP 6 FAILED: Exception sending OTP email to '" + normalizedEmail + "': " + e.getMessage());
+            request.setAttribute("error", "We could not send the verification email to '" + normalizedEmail + "'. Please verify that the email service is authorized and try again.");
+            request.getRequestDispatcher("/WEB-INF/views/auth/register.jsp").forward(request, response);
+            return;
         }
 
         // ── STEP 7: Forward to OTP entry page ───────────────────────────────────
